@@ -1,0 +1,23 @@
+{
+  "name": "schumacher-theme-dev",
+  "version": "1.0.0",
+  "description": "[![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "shopify theme dev --store schumacher-knepper-v2",
+    "push": "shopify theme push --store schumacher-knepper-v2",
+    "check": "shopify theme check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Schumacher-Knepper/schumacher-theme.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Schumacher-Knepper/schumacher-theme/issues"
+  },
+  "homepage": "https://github.com/Schumacher-Knepper/schumacher-theme#readme"
+}
