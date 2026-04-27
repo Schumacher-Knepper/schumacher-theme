@@ -1,0 +1,1 @@
+/Users/hy13/Dev/Shopify/schumacher-theme-dev/AGENTS.md
