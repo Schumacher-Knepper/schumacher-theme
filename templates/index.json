@@ -15,14 +15,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Domaine viticole Schumacher-Knepper",
+            "heading": "Schumacher-Knepper winery",
             "heading_size": "h0"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "Depuis 1714",
+            "text": "Since 1714",
             "text_style": "body"
           }
         },
