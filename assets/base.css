@@ -3605,3 +3605,92 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* Glass Inputs */
+.field--glass {
+  background: rgba(var(--color-background), 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 100px;
+  border: 1px solid rgba(var(--color-foreground), 0.08);
+  box-shadow: 
+    0 10px 30px -10px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  padding: 0 1rem;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.field--glass:focus-within {
+  background: rgba(var(--color-background), 0.75);
+  box-shadow: 
+    0 20px 40px -12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.field--glass::before,
+.field--glass::after {
+  display: none !important;
+}
+
+.field--glass .field__input {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 100% !important;
+  font-size: 1.6rem;
+}
+
+.field--glass .field__label {
+  left: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+
+.field--glass .field__input:focus ~ .field__label,
+.field--glass .field__input:not(:placeholder-shown) ~ .field__label,
+.field--glass .field__input:-webkit-autofill ~ .field__label {
+  top: 1.2rem;
+  transform: translateY(0);
+  font-size: 1rem;
+}
+
+.field--glass .field__button {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  right: 1.5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Textarea adjustment */
+.field--glass.field--textarea {
+  border-radius: 24px;
+  height: auto;
+  align-items: flex-start;
+  padding: 1.5rem 1rem;
+}
+
+.field--glass.field--textarea .field__input {
+  height: auto !important;
+  min-height: 15rem;
+  padding: 1.5rem 2rem !important;
+}
+
+.field--glass.field--textarea .field__label {
+  top: 2.2rem;
+  transform: none;
+}
+
+.field--glass.field--textarea .field__input:focus ~ .field__label,
+.field--glass.field--textarea .field__input:not(:placeholder-shown) ~ .field__label {
+  top: 1rem;
+}

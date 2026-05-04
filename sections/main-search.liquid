@@ -19,41 +19,8 @@
     margin-bottom: 3rem;
   }
 
-  .template-search__search .field {
-    background: rgba(var(--color-background), 0.55);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-radius: 100px;
-    border: 1px solid rgba(var(--color-foreground), 0.08);
-    box-shadow: 
-      0 10px 30px -10px rgba(0, 0, 0, 0.1),
-      inset 0 1px 1px rgba(255, 255, 255, 0.2);
-    padding: 0 1rem;
-    height: 6rem;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease;
-  }
-
-  .template-search__search .field:focus-within {
-    background: rgba(var(--color-background), 0.75);
-    box-shadow: 
-      0 20px 40px -12px rgba(0, 0, 0, 0.15),
-      inset 0 1px 1px rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-  }
-
-  .template-search__search .field__input {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 2rem !important;
-    height: 100% !important;
-    font-size: 1.8rem;
-  }
-
   .template-search__search .field__label {
-    display: none !important;
+    display: block;
   }
 
   .template-search__search .field__button {
@@ -68,11 +35,13 @@
     cursor: pointer;
   }
 
-  .template-search__search .field::before,
-  .template-search__search .field::after {
-    display: none !important;
+  .template-search__search .search__button {
+    right: 1.5rem !important;
   }
 
+  .template-search__search .reset__button {
+    right: 6.5rem !important;
+  }
 
   .template-search__search {
     margin: 0 auto 3.5rem;
@@ -94,7 +63,6 @@
     width: 100% !important;
     left: 0 !important;
   }
-
 
   .template-search__search .search {
     margin-top: 3rem;
@@ -151,7 +119,7 @@
         {%- endif -%}
         <main-search>
           <form action="{{ routes.search_url }}" method="get" role="search" class="search">
-            <div class="field">
+            <div class="field field--glass">
               <input
                 class="search__input field__input"
                 id="Search-In-Template"
