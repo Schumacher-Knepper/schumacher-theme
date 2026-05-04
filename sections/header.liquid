@@ -231,8 +231,12 @@
     height: 60px !important; 
   }
 
-  .header-wrapper:has(header-drawer details[open]) {
-    background: rgba(var(--color-background), 0.85) !important; 
+  .header-wrapper:has(details[open]) {
+    background: rgba(var(--color-background), 0.95) !important; 
+    box-shadow: 
+      0 0 0 100vmax rgba(var(--color-foreground), 0.5),
+      0 10px 30px -10px rgba(0, 0, 0, 0.1),
+      inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
   }
 
   .search-modal__content .field__button,
@@ -331,9 +335,6 @@
     background: transparent !important;
   }
 
-  /* Universal overlay for all header modals (Search & Burger).
-     Using a ::before pseudo-element behind the pill allows us to animate it 
-     fading in, while keeping the pill and its children bright. */
   .header-wrapper::before {
     content: '';
     position: absolute;
@@ -341,7 +342,7 @@
     left: 50%;
     width: 200vmax;
     height: 200vmax;
-    background: rgba(var(--color-foreground), 0.5);
+    background: transparent;
     z-index: -1;
     pointer-events: none;
     opacity: 0;
