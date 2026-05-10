@@ -9,9 +9,9 @@
   cursor: default;
   width: 100%;
   height: calc(100vh - 100%);
-  height: calc(100svh - 100%);
+  height: calc(100dvh - 100%);
   height: calc(var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%)));
-  height: calc(var(--viewport-height, 100svh) - (var(--header-bottom-position, 100%)));
+  height: calc(var(--viewport-height, 100dvh) - (var(--header-bottom-position, 100%)));
   top: 100%;
   left: 0;
   background: rgba(var(--color-foreground), 0.5);
@@ -46,9 +46,9 @@ menu-drawer > details[open] > summary::before {
 
 .js .menu-drawer {
   height: calc(100vh - 100%);
-  height: calc(100svh - 100%);
+  height: calc(100dvh - 100%);
   height: calc(var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%)));
-  height: calc(var(--viewport-height, 100svh) - (var(--header-bottom-position, 100%)));
+  height: calc(var(--viewport-height, 100dvh) - (var(--header-bottom-position, 100%)));
 }
 
 .js details[open] > .menu-drawer,
