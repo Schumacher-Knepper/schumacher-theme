@@ -1,14 +1,216 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "image_banner_9faEwx": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_L4w7MG": {
+          "type": "heading",
+          "settings": {
+            "heading": "Deeply Rooted in the Luxembourg Moselle",
+            "heading_size": "h1"
+          }
+        },
+        "text_V3HhPP": {
+          "type": "text",
+          "settings": {
+            "text": "The story of Domaine Viticole Schumacher-Knepper is inextricably linked to the soils of the Moselle Valley. Since 1714, our family has cultivated the steep, sun-drenched hillsides above the winemaking village of Wintrange. For ten generations, we have observed the subtle shifts in the climate, mastered the unique character of each harvest, and honored the enduring quality of our terroir.",
+            "text_style": "body"
+          }
+        },
+        "buttons_apceXt": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Terroir & Craft",
+            "button_link_1": "shopify://collections/frontpage",
+            "button_style_secondary_1": true,
+            "button_label_2": "Visit the Estate",
+            "button_link_2": "shopify://collections/frontpage",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_L4w7MG",
+        "text_V3HhPP",
+        "buttons_apceXt"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/IMG_0044_Custom.jpg",
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "rich_text_NdiLRU": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_pwy4xg": {
+          "type": "heading",
+          "settings": {
+            "heading": "The Roots of the Estate",
+            "heading_size": "h1"
+          }
+        },
+        "text_BYDjkT": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The physical evidence of this legacy surrounds us. Step into our estate, and you will find the original 1629 winemaker's house, constructed with traditional natural sandstone, standing alongside the historic 1714 cellar buildings. Yet, while our foundations are ancient, our vision is relentlessly forward-looking. We believe that honoring tradition does not mean resisting innovation. True craftsmanship requires a profound understanding of one's roots to craft wines that speak dynamically to the modern palate.</p>"
+          }
+        },
+        "button_qJMcRb": {
+          "type": "button",
+          "settings": {
+            "button_label": "Terroir & Craft",
+            "button_link": "shopify://collections/frontpage",
+            "button_style_secondary": true,
+            "button_label_2": "Visit the Estate",
+            "button_link_2": "shopify://collections/frontpage",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_pwy4xg",
+        "text_BYDjkT",
+        "button_qJMcRb"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "image_with_text_iNHfTT": {
+      "type": "image-with-text",
+      "blocks": {
+        "caption_LJmDi9": {
+          "type": "caption",
+          "settings": {
+            "caption": "The Sibling Dynamic",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading_6Mg4AB": {
+          "type": "heading",
+          "settings": {
+            "heading": "The modern era",
+            "heading_size": "h2"
+          }
+        },
+        "text_TwfKmg": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The current chapter of the Schumacher-Knepper legacy is written by siblings Martine and Frank Schumacher. Growing up with the sprawling winery as their childhood playground, both siblings were encouraged to pursue their own passions before returning to the family business. Martine pursued an intensive education in Commercial Sciences, while Frank prepared to study Mathematics before pivoting to his true calling in Oenology. </p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "caption_LJmDi9",
+        "heading_6Mg4AB",
+        "text_TwfKmg"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Schumacher_Knepper_action_01.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-5",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "image_with_text_79DeAh": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_ijHe8i": {
+          "type": "heading",
+          "settings": {
+            "heading": "A Synergy of Science and Strategy",
+            "heading_size": "h2"
+          }
+        },
+        "text_MC7Lri": {
+          "type": "text",
+          "settings": {
+            "text": "<p>When the time came to secure the future of the estate, they realized how deeply anchored they were in this family legacy. They took over the winery together, forging a perfect partnership. Frank is the architect of the wine. Utilizing his rigorous oenological training, he oversees the cultivation of our eight grape varieties, pushing boundaries to create complex, award-winning cuvées. Martine serves as the strategic force of the domaine, managing the complex operations of the business and ensuring that the brand her family spent three centuries building continues to thrive on the global stage.<br/></p>",
+            "text_style": "body"
+          }
+        },
+        "button_ixUNQm": {
+          "type": "button",
+          "settings": {
+            "button_label": "Get in touch",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_ijHe8i",
+        "text_MC7Lri",
+        "button_ixUNQm"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Frank_und_Martine.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-5",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "image_banner_9faEwx",
+    "rich_text_NdiLRU",
+    "image_with_text_iNHfTT",
+    "image_with_text_79DeAh"
   ]
 }
