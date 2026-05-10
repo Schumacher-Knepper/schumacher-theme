@@ -255,6 +255,7 @@
     width: calc(100% - 2rem);
     height: auto;
     max-height: 60vh;
+    max-height: 60svh;
     border-radius: 28px;
     border: 1px solid rgba(var(--color-foreground), 0.08);
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);

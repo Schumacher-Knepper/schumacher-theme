@@ -2612,6 +2612,7 @@ input[type='checkbox'] {
   top: 100%;
   left: 0;
   height: calc(var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%)));
+  height: calc(var(--viewport-height, 100svh) - (var(--header-bottom-position, 100%)));
   width: 100%;
   display: block;
   position: absolute;
@@ -2698,6 +2699,7 @@ details[open] .modal-overlay::after {
   left: 0;
   right: 0;
   height: 100vh;
+  height: 100svh;
 }
 
 .search-modal {
@@ -3286,6 +3288,7 @@ details-disclosure > details {
 .animate--fixed > svg:not(.zoom):not(.deferred-media__poster-button) {
   position: fixed;
   height: 100vh;
+  height: 100svh;
 }
 
 /* Zoom in image on scroll */
