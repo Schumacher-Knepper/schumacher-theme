@@ -1300,24 +1300,6 @@ button.shopify-payment-button__button--unbranded {
   transform: translateY(-2px);
 }
 
-/* Ensure the theme's border logic works with pill shape */
-.button--secondary:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  border-radius: var(--buttons-radius);
-  border: 1px solid rgba(var(--color-button-text), var(--buttons-border-opacity)) !important;
-  box-shadow: none !important;
-}
-
-.button--secondary:before {
-  display: none !important;
-}
-
 .button:focus-visible,
 .button:focus,
 .button.focused,
