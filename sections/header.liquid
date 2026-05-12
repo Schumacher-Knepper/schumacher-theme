@@ -292,9 +292,15 @@
     transition: opacity 0.3s ease;
   }
 
-  /* Push main content down to avoid overlapping text, unless the first section is a banner/hero */
   #MainContent {
-    padding-top: calc(var(--header-height, 100px) + 2rem);
+    padding-top: calc(var(--header-height, 100px));
+  }
+
+  #MainContent:has(> .shopify-section:first-child .banner) .banner__content,
+  #MainContent:has(> .shopify-section:first-child .slideshow) .banner__content,
+  #MainContent:has(> .shopify-section:first-child .collection-hero) .collection-hero__inner,
+  #MainContent:has(> .shopify-section:first-child .video-section) .video-section {
+    padding-top: calc(var(--header-height, 100px));
   }
   
   #MainContent:has(> .shopify-section:first-child .banner),
@@ -312,13 +318,6 @@
     }
     .search-modal {
       border-radius: 50px;
-    }
-
-    #MainContent:has(> .shopify-section:first-child .banner) .banner__content,
-    #MainContent:has(> .shopify-section:first-child .slideshow) .banner__content,
-    #MainContent:has(> .shopify-section:first-child .collection-hero) .collection-hero__inner,
-    #MainContent:has(> .shopify-section:first-child .video-section) .video-section {
-      padding-top: calc(var(--header-height, 100px) + 2rem);
     }
   }
 
