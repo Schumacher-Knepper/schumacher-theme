@@ -1,8 +1,168 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 
-<div class="page-width">
-  <h1 class="title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+<style>
+  .collection-list-section {
+    padding-top: 4rem;
+    padding-bottom: 8rem;
+  }
+
+  .collection-list-title {
+    font-size: 3.2rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 5rem !important;
+    color: rgba(var(--color-foreground), 0.8);
+  }
+
+  /* Luxury Card Styles */
+  .collection-list__item .card {
+    border-radius: 32px !important;
+    overflow: hidden !important;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1) !important;
+    border: 1px solid rgba(var(--color-foreground), 0.03) !important;
+    background: transparent !important;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.06) !important; /* Soft base shadow */
+  }
+
+  .collection-list__item .card:hover {
+    transform: translateY(-8px) !important; /* Stronger lift */
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.12) !important; /* Intense hover shadow */
+  }
+
+  .collection-list__item .card__inner {
+    border-radius: 32px !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+
+  /* If it's a text-only card (like Home Page), ensure it has a background */
+  .collection-list__item .card--text .card__inner {
+    background-color: rgb(var(--color-background)) !important;
+  }
+
+  .collection-list__item .card__media {
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  }
+
+  .collection-list__item .card:hover .card__media {
+    transform: scale(1.08) !important;
+  }
+
+  /* Hide default title below image */
+  .collection-list__item .card__content--external {
+    display: none !important;
+  }
+
+  .collection-list__item .card__content--overlay,
+  .collection-list__item .card__content--overlay * {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .collection-list__item .card__content--overlay {
+    position: absolute !important;
+    bottom: 2.5rem !important;
+    left: 2.5rem !important;
+    right: 2.5rem !important;
+    padding: 0 !important;
+    justify-content: flex-start !important;
+    align-items: flex-end !important;
+    pointer-events: none !important;
+    z-index: 10 !important;
+  }
+
+  .collection-list__item .card__information {
+    padding: 0 !important;
+    width: auto !important;
+    pointer-events: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .collection-list__item .card__heading {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .collection-list__item .card__heading a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    background: rgba(var(--color-foreground), 0.1) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    padding: 1.2rem 2.8rem !important;
+    border-radius: 100px !important;
+    border: 1px solid rgba(var(--color-foreground), 0.1) !important;
+    color: rgb(var(--color-foreground)) !important;
+    font-size: 1.2rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.25em !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+    text-decoration: none !important;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
+    position: relative !important;
+  }
+
+  .collection-list__item .card__heading a::after {
+    content: '' !important;
+    position: absolute !important;
+    top: -10000px !important;
+    z-index: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .collection-list__item .card:hover .card__heading a {
+    background: rgb(var(--color-background)) !important; /* Solid background on hover */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transform: translateY(-2px) !important;
+    border-color: rgba(var(--color-foreground), 0.1) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .collection-list__item .card__heading .icon-wrap {
+    transition: transform 0.4s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+
+  .collection-list__item .card:hover .card__heading .icon-wrap {
+    transform: translateX(5px) !important;
+  }
+
+  .collection-list__item .card__caption {
+    display: none !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection-list-title {
+      font-size: 2.4rem;
+      margin-bottom: 3rem !important;
+    }
+    
+    .collection-list__item .card__content--overlay {
+      bottom: 1.5rem !important;
+      left: 1.5rem !important;
+      right: 1.5rem !important;
+    }
+
+    .collection-list__item .card__heading a {
+      padding: 0.8rem 1.6rem !important;
+      font-size: 1.1rem !important;
+    }
+  }
+</style>
+
+<div class="page-width collection-list-section">
+  <h1 class="collection-list-title inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     {{ section.settings.title }}
   </h1>
   {%- liquid
@@ -28,7 +188,26 @@
       class="collection-list grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
       role="list"
     >
+      {%- if paginate.current_page == 1 -%}
+        {%- assign recommendations_collection = collections['recommendations'] -%}
+        {%- if recommendations_collection -%}
+          <li
+            class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: 0;"
+            {% endif %}
+          >
+            {% render 'card-collection',
+              card_collection: recommendations_collection,
+              media_aspect_ratio: section.settings.image_ratio,
+              columns: 3
+            %}
+          </li>
+        {%- endif -%}
+      {%- endif -%}
       {%- for collection in collections -%}
+        {%- if collection.handle == 'frontpage' or collection.handle == 'recommendations' -%}{%- continue -%}{%- endif -%}
         <li
           class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
