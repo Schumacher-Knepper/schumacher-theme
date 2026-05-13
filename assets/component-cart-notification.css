@@ -118,7 +118,7 @@
 }
 
 .cart-notification-product__image.global-media-settings img {
-  border-radius: var(--media-radius) !important;
+  border-radius: calc(var(--media-radius) - var(--media-border-width)) !important;
 }
 
 .cart-notification-product__image:after {

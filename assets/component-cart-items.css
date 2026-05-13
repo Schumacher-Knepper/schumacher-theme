@@ -39,7 +39,7 @@ cart-items .title-wrapper-with-link {
 }
 
 .cart-item__image-container.global-media-settings img {
-  border-radius: var(--media-radius) !important;
+  border-radius: calc(var(--media-radius) - var(--media-border-width)) !important;
 }
 
 .cart-item__nested-line .cart-item__image-container {
