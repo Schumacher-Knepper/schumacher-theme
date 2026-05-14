@@ -196,6 +196,7 @@
       class="collection-list grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
       role="list"
     >
+      {%- assign animation_order = 0 -%}
       {%- if paginate.current_page == 1 -%}
         {%- assign recommendations_collection = collections['recommendations'] -%}
         {%- if recommendations_collection -%}
@@ -203,7 +204,7 @@
             class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
-              style="--animation-order: 0;"
+              style="--animation-order: {{ animation_order }};"
             {% endif %}
           >
             {% render 'card-collection',
@@ -212,15 +213,37 @@
               columns: 3
             %}
           </li>
+          {%- assign animation_order = animation_order | plus: 1 -%}
+        {%- endif -%}
+
+        {%- assign all_collection = collections['all'] -%}
+        {%- if all_collection -%}
+          <li
+            class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ animation_order }};"
+            {% endif %}
+          >
+            {% render 'card-collection',
+              card_collection: all_collection,
+              media_aspect_ratio: section.settings.image_ratio,
+              columns: 3
+            %}
+          </li>
+          {%- assign animation_order = animation_order | plus: 1 -%}
         {%- endif -%}
       {%- endif -%}
+
       {%- for collection in collections -%}
-        {%- if collection.handle == 'recommendations' -%}{%- continue -%}{%- endif -%}
+        {%- if collection.handle == 'recommendations' or collection.handle == 'all' -%}
+          {%- continue -%}
+        {%- endif -%}
         <li
           class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
-            style="--animation-order: {{ forloop.index }};"
+            style="--animation-order: {{ animation_order }};"
           {% endif %}
         >
           {% render 'card-collection',
@@ -229,6 +252,7 @@
             columns: 3
           %}
         </li>
+        {%- assign animation_order = animation_order | plus: 1 -%}
       {%- endfor -%}
     </ul>
     {% render 'pagination', paginate: paginate %}

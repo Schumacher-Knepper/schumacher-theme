@@ -152,8 +152,41 @@
                 {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
               "
             >
+              {% assign pinned_handle = 'schumacher-knepper-gift-card' %}
               {% assign skip_card_product_styles = false %}
+              
+              {%- if paginate.current_page == 1 -%}
+                {%- assign pinned_product = all_products[pinned_handle] -%}
+                {%- if pinned_product != empty -%}
+                  <li
+                    class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                    {% if settings.animations_reveal_on_scroll %}
+                      data-cascade
+                      style="--animation-order: 0;"
+                    {% endif %}
+                  >
+                    {% render 'card-product',
+                      card_product: pinned_product,
+                      media_aspect_ratio: section.settings.image_ratio,
+                      image_shape: section.settings.image_shape,
+                      show_secondary_image: section.settings.show_secondary_image,
+                      show_vendor: section.settings.show_vendor,
+                      show_rating: section.settings.show_rating,
+                      lazy_load: false,
+                      skip_styles: skip_card_product_styles,
+                      quick_add: section.settings.quick_add,
+                      section_id: section.id
+                    %}
+                  </li>
+                  {%- assign skip_card_product_styles = true -%}
+                {%- endif -%}
+              {%- endif -%}
+
               {%- for product in collection.products -%}
+                {%- if product.handle == pinned_handle -%}
+                  {%- continue -%}
+                {%- endif -%}
+                
                 {% assign lazy_load = false %}
                 {%- if forloop.index > 2 -%}
                   {%- assign lazy_load = true -%}
