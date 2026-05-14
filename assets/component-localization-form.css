@@ -453,3 +453,61 @@
 .language-selector .disclosure__list {
   min-width: 200px;
 }
+
+/* Footer specific glassy selectors */
+.footer__localization .disclosure__button {
+  background: rgba(var(--color-background), 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 100px;
+  border: 1px solid rgba(var(--color-foreground), 0.08);
+  height: 5.4rem;
+  padding: 0 2.5rem;
+  margin-top: 1rem;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 
+    0 10px 30px -10px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  width: max-content;
+  min-width: 18rem;
+  justify-content: space-between;
+  position: relative;
+}
+
+.footer__localization .disclosure__button:before,
+.footer__localization .disclosure__button:after {
+  display: none !important;
+  content: none !important;
+}
+
+.footer__localization .disclosure__button:hover {
+  background: rgba(var(--color-background), 0.7);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 15px 40px -12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  border-color: rgba(var(--color-foreground), 0.15);
+}
+
+.footer__localization .disclosure__button .icon-caret {
+  position: static;
+  margin-left: 1.5rem;
+}
+
+.footer__localization .localization-form {
+  padding: 0;
+  margin: 0;
+}
+
+.footer__localization .localization-form:only-child .localization-form__select {
+  margin: 1rem 0;
+}
+
+@media screen and (max-width: 749px) {
+  .footer__localization .disclosure__button {
+    width: 100%;
+    min-width: initial;
+    height: 4.8rem;
+  }
+}
+
