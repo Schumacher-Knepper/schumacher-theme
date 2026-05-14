@@ -38,7 +38,7 @@
           "type": "buttons",
           "settings": {
             "button_label_1": "Terroir & Craft",
-            "button_link_1": "shopify://collections/recommendations",
+            "button_link_1": "shopify://pages/terroir-craft",
             "button_style_secondary_1": false,
             "button_label_2": "",
             "button_link_2": "",
@@ -86,7 +86,7 @@
           "type": "button",
           "settings": {
             "button_label": "Visit the Estate",
-            "button_link": "shopify://collections/recommendations",
+            "button_link": "shopify://pages/visit-the-estate",
             "button_style_secondary": true,
             "button_label_2": "",
             "button_link_2": "",
