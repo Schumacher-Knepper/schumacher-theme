@@ -53,6 +53,7 @@
   width: 100%;
   background-color: rgb(var(--color-background));
   overflow: hidden;
+  border-radius: 32px;
   max-width: var(--page-width);
   width: calc(100% - 3rem);
 }
