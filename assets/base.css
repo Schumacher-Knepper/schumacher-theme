@@ -3758,6 +3758,7 @@ details-disclosure > details {
 #shopify-pc__banner {
   position: fixed !important;
   bottom: 2.5rem !important;
+  bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px)) !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
   width: calc(100% - 4rem) !important;
@@ -4172,4 +4173,15 @@ details-disclosure > details {
   backdrop-filter: blur(8px) !important;
   -webkit-backdrop-filter: blur(8px) !important;
   z-index: 2147483646 !important;
+  touch-action: none !important;
+}
+
+/* Lock body/html scroll when Privacy Center dialog or banner is open */
+html:has(#shopify-pc__prefs__dialog),
+html:has(#shopify-pc__prefs__dialog) body,
+html:has(#shopify-pc__banner),
+html:has(#shopify-pc__banner) body {
+  overflow: hidden !important;
+  height: 100vh !important;
+  height: 100dvh !important;
 }
