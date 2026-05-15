@@ -229,3 +229,36 @@ slideshow-component:not(.page-width) .slider-buttons {
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.8);
 }
+
+/* Countdown Text */
+.banner__text--countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 4rem;
+  line-height: 1.1;
+  letter-spacing: 0.1rem;
+}
+
+.banner__text--countdown .countdown-prefix {
+  font-size: 0.5em; /* relative to 4rem, so 2rem */
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.banner__text--countdown .countdown-year {
+  font-size: 7rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+@media screen and (max-width: 749px) {
+  .banner__text--countdown {
+    font-size: 2.5rem;
+  }
+  .banner__text--countdown .countdown-year {
+    font-size: 5rem;
+  }
+}

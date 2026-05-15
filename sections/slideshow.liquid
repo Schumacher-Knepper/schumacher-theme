@@ -165,8 +165,16 @@
               </h2>
             {%- endif -%}
             {%- if block.settings.subheading != blank -%}
-              <div class="banner__text rte">
-                <p>{{ block.settings.subheading }}</p>
+              <div class="banner__text rte{% if block.settings.enable_countdown %} banner__text--countdown{% endif %}">
+                {%- if block.settings.enable_countdown -%}
+                  {%- assign subheading_parts = block.settings.subheading | split: ' ' -%}
+                  {%- assign target_year = subheading_parts | last -%}
+                  {%- assign prefix = block.settings.subheading | remove: target_year | strip -%}
+                  <span class="countdown-prefix">{{ prefix }}</span>
+                  <countdown-timer class="countdown-year" data-target-year="{{ target_year }}">{{ 'now' | date: "%Y" }}</countdown-timer>
+                {%- else -%}
+                  <p>{{ block.settings.subheading }}</p>
+                {%- endif -%}
               </div>
             {%- endif -%}
             {%- if block.settings.button_label != blank -%}
@@ -259,6 +267,55 @@
 {%- if request.design_mode -%}
   <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
+
+<script>
+  if (!customElements.get('countdown-timer')) {
+    customElements.define('countdown-timer', class extends HTMLElement {
+      connectedCallback() {
+        this.targetYear = parseInt(this.getAttribute('data-target-year')) || parseInt(this.textContent) || 1714;
+        this.currentYear = new Date().getFullYear();
+        this.duration = 2500; // 2.5 seconds
+        this.started = false;
+
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting && !this.started) {
+            this.started = true;
+            setTimeout(() => {
+              this.startCountdown();
+            }, 400);
+            observer.disconnect();
+          }
+        });
+        observer.observe(this);
+      }
+
+      startCountdown() {
+        const startTime = performance.now();
+        const startYear = this.currentYear;
+        const endYear = this.targetYear;
+
+        const animate = (currentTime) => {
+          const elapsedTime = currentTime - startTime;
+          const progress = Math.min(elapsedTime / this.duration, 1);
+          
+          // easeOutExpo for dramatic slowdown at the end
+          const easeOut = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+          const currentDisplay = Math.round(startYear - (startYear - endYear) * easeOut);
+          
+          this.textContent = currentDisplay;
+
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            this.textContent = endYear;
+          }
+        };
+
+        requestAnimationFrame(animate);
+      }
+    });
+  }
+</script>
 
 {% schema %}
 {
@@ -447,6 +504,13 @@
           "id": "subheading",
           "default": "t:sections.slideshow.blocks.slide.settings.subheading.default",
           "label": "t:sections.slideshow.blocks.slide.settings.subheading.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_countdown",
+          "label": "Enable countdown effect",
+          "info": "Splits subheading by space. The last word must be a year (e.g. 'Since 1714').",
+          "default": false
         },
         {
           "type": "header",

@@ -20,6 +20,7 @@
             "heading": "Schumacher-Knepper winery",
             "heading_size": "h0",
             "subheading": "Since 1714",
+            "enable_countdown": true,
             "button_label": "Explore Our Wines",
             "link": "shopify://collections/all",
             "button_style_secondary": true,
