@@ -3906,12 +3906,12 @@ body:has(#shopify-pc__prefs:not([style*="none"])) {
 
 @media screen and (max-width: 749px) {
   #shopify-pc__banner {
-    bottom: 2.5rem !important;
+    bottom: 0 !important;
     left: 2rem !important;
     right: 2rem !important;
     width: auto !important;
     max-width: 520px !important;
-    margin: 0 auto !important;
+    margin: 0 auto 2.5rem auto !important;
     transform: none !important;
     border-radius: 32px !important;
     padding: 2.5rem !important;
