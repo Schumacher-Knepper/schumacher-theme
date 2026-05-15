@@ -104,6 +104,13 @@
             "value": "<p>{{ product.metafields.custom.mention.value.mention.value }}</p>"
           }
         },
+        "grid_row_FyRYyN": {
+          "type": "grid_row",
+          "settings": {
+            "key": "Country",
+            "value": "<p>{{ product.metafields.shopify.country | metafield_text: field: 'label' }}</p>"
+          }
+        },
         "share": {
           "type": "share",
           "settings": {
@@ -127,6 +134,7 @@
         "grid_row_hill",
         "grid_row_variety",
         "grid_row_mention",
+        "grid_row_FyRYyN",
         "share"
       ],
       "settings": {
