@@ -3775,7 +3775,7 @@ body:has(#shopify-pc__prefs:not([style*="none"])) {
 
 #shopify-pc__banner {
   position: fixed !important;
-  bottom: calc(2.5rem - env(safe-area-inset-bottom, 0px)) !important;
+  margin-bottom: 2.5rem !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
   width: calc(100% - 4rem) !important;
