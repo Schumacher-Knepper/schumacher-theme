@@ -3774,8 +3774,7 @@ body:has(#shopify-pc__prefs:not([style*="none"])) {
 }
 
 #shopify-pc__banner {
-  position: fixed !important;
-  /* bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px)) !important; */
+  bottom: 2.5rem !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
   width: calc(100% - 4rem) !important;
@@ -3906,6 +3905,18 @@ body:has(#shopify-pc__prefs:not([style*="none"])) {
 }
 
 @media screen and (max-width: 749px) {
+  #shopify-pc__banner {
+    bottom: 2.5rem !important;
+    left: 2rem !important;
+    right: 2rem !important;
+    width: auto !important;
+    max-width: 520px !important;
+    margin: 0 auto !important;
+    transform: none !important;
+    border-radius: 32px !important;
+    padding: 2.5rem !important;
+  }
+
   .shopify-pc__banner__btns {
     flex-direction: column !important;
     align-items: stretch !important;
