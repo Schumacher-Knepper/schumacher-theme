@@ -56,8 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('submit', function(event) {
     const targetForm = event.target;
     
-    // Check if it's an add to cart form
-    if (targetForm.matches('form[action^="/cart/add"]')) {
+    // Check if it's an add to cart form (accounting for localized sub-paths like /fr/cart/add)
+    if (targetForm.action.includes('/cart/add')) {
       // If we already verified during this session, let it pass
       if (targetForm.dataset.ageVerified === 'true') return;
 
