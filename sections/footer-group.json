@@ -14,11 +14,25 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "footer-0": {
+        "link_list_dQcfjL": {
           "type": "link_list",
           "settings": {
             "heading": "Quick links",
             "menu": "footer"
+          }
+        },
+        "link_list_KeEGHj": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Customer Care",
+            "menu": "footer-customer-care"
+          }
+        },
+        "footer-0": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Legal & Admin",
+            "menu": "legal-admin"
           }
         },
         "footer-2": {
@@ -30,6 +44,8 @@
         }
       },
       "block_order": [
+        "link_list_dQcfjL",
+        "link_list_KeEGHj",
         "footer-0",
         "footer-2"
       ],
