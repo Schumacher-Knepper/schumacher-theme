@@ -25,7 +25,9 @@
     >
     <label class="recipient-checkbox" for="Recipient-checkbox-{{ section.id }}">
       {{ 'square.svg' | inline_asset_content }}
-      {{- 'icon-checkmark.svg' | inline_asset_content -}}
+      <div class="svg-wrapper">
+        {{- 'icon-checkmark.svg' | inline_asset_content -}}
+      </div>
       <span>{{ 'recipient.form.checkbox' | t }}</span>
     </label>
     <div

@@ -96,46 +96,6 @@
   margin-top: 1rem;
 }
 
-.age-verification-modal__inputs {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.age-verification-modal__input-group {
-  flex: 1;
-}
-
-.age-verification-modal__input {
-  width: 100%;
-  padding: 1.2rem;
-  border-radius: 50px; /* Rounded pill shape for inputs */
-  border: 1px solid rgba(var(--color-foreground), 0.2);
-  background: rgba(var(--color-background), 0.4); /* Slight glass on inputs */
-  color: rgb(var(--color-foreground));
-  font-size: 1.6rem;
-  text-align: center;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  font-family: var(--font-body-family);
-}
-
-.age-verification-modal__input:focus {
-  outline: none;
-  border-color: rgb(var(--color-foreground));
-  box-shadow: 0 0 0 1px rgb(var(--color-foreground));
-}
-
-.age-verification-modal__input::-webkit-outer-spin-button,
-.age-verification-modal__input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.age-verification-modal__input[type=number] {
-  -moz-appearance: textfield;
-  appearance: textfield;
-}
-
 .age-verification-modal__actions {
   display: flex;
   gap: 1rem;

@@ -3677,16 +3677,20 @@ details-disclosure > details {
   font-size: 1.6rem;
 }
 
-.field--glass .field__label {
+.field.field--glass .field__label,
+.customer .field.field--glass .field__label {
   left: 3rem;
   top: 50%;
   transform: translateY(-50%);
   transition: all 0.3s ease;
 }
 
-.field--glass .field__input:focus ~ .field__label,
-.field--glass .field__input:not(:placeholder-shown) ~ .field__label,
-.field--glass .field__input:-webkit-autofill ~ .field__label {
+.field.field--glass .field__input:focus ~ .field__label,
+.field.field--glass .field__input:not(:placeholder-shown) ~ .field__label,
+.field.field--glass .field__input:-webkit-autofill ~ .field__label,
+.customer .field.field--glass .field__input:focus ~ label,
+.customer .field.field--glass .field__input:not(:placeholder-shown) ~ label,
+.customer .field.field--glass .field__input:-webkit-autofill ~ label {
   top: 1.2rem;
   transform: translateY(0);
   font-size: 1rem;
@@ -3703,6 +3707,12 @@ details-disclosure > details {
   justify-content: center;
 }
 
+/* Vertically center calendar icon in date inputs */
+.field--glass .field__input[type="date"]::-webkit-calendar-picker-indicator {
+  margin-top: -0.8rem;
+  cursor: pointer;
+}
+
 /* Textarea adjustment */
 .field--glass.field--textarea {
   border-radius: 24px;
@@ -3717,13 +3727,16 @@ details-disclosure > details {
   padding: 1.5rem 2rem !important;
 }
 
-.field--glass.field--textarea .field__label {
+.field.field--glass.field--textarea .field__label,
+.customer .field.field--glass.field--textarea .field__label {
   top: 2.2rem;
   transform: none;
 }
 
-.field--glass.field--textarea .field__input:focus ~ .field__label,
-.field--glass.field--textarea .field__input:not(:placeholder-shown) ~ .field__label {
+.field.field--glass.field--textarea .field__input:focus ~ .field__label,
+.field.field--glass.field--textarea .field__input:not(:placeholder-shown) ~ .field__label,
+.customer .field.field--glass.field--textarea .field__input:focus ~ label,
+.customer .field.field--glass.field--textarea .field__input:not(:placeholder-shown) ~ label {
   top: 1rem;
 }
 

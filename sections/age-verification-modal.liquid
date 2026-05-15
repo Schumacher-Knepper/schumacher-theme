@@ -20,19 +20,16 @@
     </div>
 
     <form id="AgeVerificationForm" class="age-verification-modal__form">
-      <div class="age-verification-modal__inputs">
-        <div class="age-verification-modal__input-group">
-          <label for="AgeVerificationDay" class="visually-hidden">Day</label>
-          <input type="number" id="AgeVerificationDay" name="day" placeholder="DD" min="1" max="31" required class="age-verification-modal__input">
-        </div>
-        <div class="age-verification-modal__input-group">
-          <label for="AgeVerificationMonth" class="visually-hidden">Month</label>
-          <input type="number" id="AgeVerificationMonth" name="month" placeholder="MM" min="1" max="12" required class="age-verification-modal__input">
-        </div>
-        <div class="age-verification-modal__input-group">
-          <label for="AgeVerificationYear" class="visually-hidden">Year</label>
-          <input type="number" id="AgeVerificationYear" name="year" placeholder="YYYY" min="1900" max="{{ 'now' | date: '%Y' }}" required class="age-verification-modal__input">
-        </div>
+      <div class="field field--glass">
+        <input
+          type="date"
+          id="AgeVerificationDate"
+          name="birth_date"
+          class="field__input"
+          placeholder=" "
+          required
+        >
+        <label for="AgeVerificationDate" class="field__label">Date of birth</label>
       </div>
 
       <div id="AgeVerificationError" class="age-verification-modal__error hidden">

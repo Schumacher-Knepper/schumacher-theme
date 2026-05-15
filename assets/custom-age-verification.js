@@ -94,17 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     
-    const day = parseInt(form.elements['day'].value);
-    const month = parseInt(form.elements['month'].value);
-    const year = parseInt(form.elements['year'].value);
-    
-    // Basic date validation
-    const date = new Date(year, month - 1, day);
-    if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
-      errorMsg.textContent = "Please enter a valid date.";
+    const birthDateValue = form.elements['birth_date'].value;
+    if (!birthDateValue) {
+      errorMsg.textContent = "Please enter your date of birth.";
       errorMsg.classList.remove('hidden');
       return;
     }
+
+    const [year, month, day] = birthDateValue.split('-').map(num => parseInt(num));
 
     const age = calculateAge(year, month, day);
 
