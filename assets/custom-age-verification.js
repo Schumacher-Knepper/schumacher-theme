@@ -28,14 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
     interceptedForm = targetForm;
     modal.classList.add('is-active');
     modal.setAttribute('aria-hidden', 'false');
-    // Lock body scroll
-    document.body.style.overflow = 'hidden';
+    // Lock scroll
+    document.documentElement.classList.add('age-verification-open');
   }
 
   function hideModal() {
     modal.classList.remove('is-active');
     modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    document.documentElement.classList.remove('age-verification-open');
     interceptedForm = null;
     form.reset();
     errorMsg.classList.add('hidden');
