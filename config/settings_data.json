@@ -145,7 +145,7 @@
           "error_message": "You must be of legal drinking age to purchase.",
           "agree_button_text": "Confirm",
           "disagree_button_text": "Cancel",
-          "footer_text": "<p>By confirming this, you are agreeing to the Terms of Use and Privacy Policy. <br/><em>Alcohol abuse is dangerous for your health. Please drink responsibly.</em></p>"
+          "footer_text": "<p>By confirming this, you are agreeing to the Age Verification Policy. <br/><em>Alcohol abuse is dangerous for your health. Please drink responsibly.</em></p>"
         }
       }
     },

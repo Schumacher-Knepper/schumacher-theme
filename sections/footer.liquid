@@ -310,6 +310,11 @@
 
         {%- if section.settings.show_policy -%}
           <ul class="policies list-unstyled">
+            <li>
+              <small class="copyright__content"
+                ><a href="/pages/age-verification-policy">{{ pages['age-verification-policy'].title | default: 'Age Verification Policy' }}</a></small
+              >
+            </li>
             {%- for policy in shop.policies -%}
               {%- if policy != blank -%}
                 <li>
