@@ -3776,9 +3776,11 @@ body:has(#shopify-pc__prefs:not([style*="none"])) {
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  height: 100dvh !important;
   width: 100vw !important;
   z-index: 2147483645 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 #shopify-pc__banner {
@@ -3933,10 +3935,10 @@ body:has(#shopify-pc__prefs:not([style*="none"])) {
 
 /* Preferences Dialog (Liquid Glass Styling) */
 #shopify-pc__prefs__dialog {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
   width: calc(100% - 4rem) !important;
   max-width: 600px !important;
   max-height: 85vh !important;
@@ -4205,8 +4207,6 @@ body:has(#shopify-pc__prefs:not([style*="none"])) {
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  height: 100vh !important;
-  height: 100dvh !important;
   width: 100vw !important;
   background: rgba(0, 0, 0, 0.4) !important;
   backdrop-filter: blur(8px) !important;
