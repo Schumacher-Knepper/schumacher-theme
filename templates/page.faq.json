@@ -158,7 +158,7 @@
         "collapsible_row_GYR3Tb": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "About the Winery",
+            "heading": "Can I visit the Schumacher-Knepper estate in Schengen?",
             "icon": "question_mark",
             "row_content": "<p>We would love to welcome you! If you are interested in visiting our estate or arranging a wine tasting, please contact us by phone or email in advance so we can prepare for your visit. Our address is 28 Wäistrooss, 5495 Schengen, Luxembourg.</p>",
             "page": ""
@@ -171,7 +171,7 @@
       "name": "t:sections.collapsible_content.presets.name",
       "settings": {
         "caption": "Frequently Asked Questions",
-        "heading": "Returns & Damages",
+        "heading": "About the Winery",
         "heading_size": "h1",
         "heading_alignment": "center",
         "layout": "none",
