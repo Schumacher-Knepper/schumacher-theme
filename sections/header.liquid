@@ -358,6 +358,10 @@
     pointer-events: auto;
   }
 
+  body:has(#Details-menu-drawer-container[open]) {
+    overflow: hidden;
+  }
+
   @media screen and (min-width: 750px) {
     .section-header {
       margin-bottom: {{ section.settings.margin_bottom }}px;
