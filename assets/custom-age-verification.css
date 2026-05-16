@@ -1,9 +1,6 @@
 .age-verification-open,
 .age-verification-open body {
   overflow: hidden !important;
-  height: 100vh !important;
-  height: 100dvh !important;
-  position: relative;
 }
 
 .age-verification-modal {
