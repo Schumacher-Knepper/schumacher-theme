@@ -45,8 +45,6 @@
 }
 
 .age-verification-modal.is-active .age-verification-modal__overlay {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   transition: backdrop-filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), -webkit-backdrop-filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
