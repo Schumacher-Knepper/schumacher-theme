@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "shopify theme dev --store schumacher-knepper-v2",
     "push": "shopify theme push --store schumacher-knepper-v2",
-    "check": "shopify theme check"
+    "check": "shopify theme check",
+    "login": "shopify login",
+    "logout": "shopify logout"
   },
   "repository": {
     "type": "git",
