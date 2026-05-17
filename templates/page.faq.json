@@ -1,0 +1,195 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "collapsible_content_JykB7d": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_dgENrT": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do I need to be 18 to buy wine on your website?",
+            "icon": "question_mark",
+            "row_content": "<p>Yes. While the legal drinking age in Luxembourg is 16, we strictly enforce an 18+ policy for all online orders to ensure compliance with cross-border EU shipping laws. You will be asked to verify your age before adding items to your cart.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_7ynJPz": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I change my order after it has been placed?",
+            "icon": "question_mark",
+            "row_content": "<p>We process orders quickly, but if you need to make a change, please contact us at contact@schumacher-knepper.lu or call +352 23 60 45 immediately. If the order has not yet been dispatched, we will do our best to accommodate your request.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_dgENrT",
+        "collapsible_row_7ynJPz"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "Frequently Asked Questions",
+        "heading": "Ordering & Age Restrictions",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "",
+        "color_scheme": "",
+        "open_first_collapsible_row": true,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collapsible_content_CYjcam": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_c66CVM": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How is the wine shipped and how long does it take?",
+            "icon": "question_mark",
+            "row_content": "<p>We dispatch packages within 2 business days of receiving your payment. All orders are shipped via UPS in specially designed, reinforced boxes to protect the glass bottles. Once your order leaves our cellar, you will receive a tracking link via email.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_Fpi3fg": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do I need to be home to receive my delivery?",
+            "icon": "question_mark",
+            "row_content": "<p>Yes. Because the packages contain alcohol, UPS requires a signature from an adult (18+) upon delivery. The driver cannot leave the package unattended on your doorstep or hand it to a minor. The courier may ask for a valid photo ID if necessary.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_mLnqCK": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Where do you ship to?",
+            "icon": "question_mark",
+            "row_content": "<p>We ship domestically within Luxembourg and cross-border to most countries within the European Union. Shipping costs are calculated at checkout based on the total weight of your order and your delivery location.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_c66CVM",
+        "collapsible_row_Fpi3fg",
+        "collapsible_row_mLnqCK"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "Frequently Asked Questions",
+        "heading": "Shipping & Delivery",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "",
+        "color_scheme": "",
+        "open_first_collapsible_row": true,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collapsible_content_fPiRD4": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_p7tFkq": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What happens if a bottle arrives broken?",
+            "icon": "question_mark",
+            "row_content": "<p>We use high-quality protective packaging, but transit accidents occasionally happen. If your package arrives visibly damaged, please take clear photos of the shipping box and the broken items inside. Contact us within 48 hours at contact@schumacher-knepper.lu, and we will arrange a replacement or a refund.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_PrijYT": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I return my wine if I change my mind?",
+            "icon": "question_mark",
+            "row_content": "<p>Yes, under EU consumer law, you have 14 days from the date of delivery to return your items. Please note that for health and safety reasons, we only accept returns for wine bottles that are completely unopened, sealed, and in their original condition. The customer is responsible for the return shipping costs.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_p7tFkq",
+        "collapsible_row_PrijYT"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "Frequently Asked Questions",
+        "heading": "Returns & Damages",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "",
+        "color_scheme": "",
+        "open_first_collapsible_row": true,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collapsible_content_6BYecH": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_GYR3Tb": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I visit the Schumacher-Knepper estate in Schengen?",
+            "icon": "question_mark",
+            "row_content": "<p>We would love to welcome you! If you are interested in visiting our estate or arranging a wine tasting, please contact us by phone or email in advance so we can prepare for your visit. Our address is 28 Wäistrooss, 5495 Schengen, Luxembourg.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_GYR3Tb"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "Frequently Asked Questions",
+        "heading": "About the Winery",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "",
+        "color_scheme": "",
+        "open_first_collapsible_row": true,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "collapsible_content_JykB7d",
+    "collapsible_content_CYjcam",
+    "collapsible_content_fPiRD4",
+    "collapsible_content_6BYecH"
+  ]
+}

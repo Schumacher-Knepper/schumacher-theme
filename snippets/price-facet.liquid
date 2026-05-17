@@ -1,6 +1,5 @@
-<span class="field-currency">{{ cart.currency.symbol }}</span>
-
-<div class="field">
+<div class="field field--glass">
+  <span class="field-currency">{{ cart.currency.symbol }}</span>
   <input
     class="field__input"
     name="{{ filter.min_value.param_name }}"
@@ -21,10 +20,11 @@
 </div>
 
 {%- if filter_type != 'vertical' -%}
-  <span class="field-currency">{{ cart.currency.symbol }}</span>
+  <span class="field-currency-separator">&ndash;</span>
 {%- endif -%}
 
-<div class="field">
+<div class="field field--glass">
+  <span class="field-currency">{{ cart.currency.symbol }}</span>
   <input
     class="field__input"
     name="{{ filter.max_value.param_name }}"
@@ -43,3 +43,4 @@
     {{- 'products.facets.to' | t -}}
   </label>
 </div>
+

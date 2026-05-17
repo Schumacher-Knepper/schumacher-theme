@@ -21,6 +21,7 @@
   width: 100%;
   background: rgba(var(--color-foreground), 0.2);
   height: 100%;
+  touch-action: none;
 }
 
 .quick-add-modal[open] {
@@ -53,6 +54,7 @@
   width: 100%;
   background-color: rgb(var(--color-background));
   overflow: hidden;
+  border-radius: 32px;
   max-width: var(--page-width);
   width: calc(100% - 3rem);
 }
@@ -356,9 +358,34 @@ quick-add-modal .product-form__buttons {
 }
 
 .quick-add__submit {
-  padding: 0.8rem;
+  padding: 1rem 2.4rem;
   min-width: 100%;
   box-sizing: border-box;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  pointer-events: auto !important;
+}
+
+.quick-add__submit:hover {
+  background: rgba(var(--color-background), 0.8) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border-color: rgba(var(--color-foreground), 0.2) !important;
+}
+
+.quick-add__submit:active {
+  transform: translateY(0);
+}
+
+.quick-add__submit[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 quick-add-modal .product-media-container.constrain-height {
@@ -403,4 +430,46 @@ quick-add-bulk .quantity__input {
 
 .quantity__input-disabled {
   pointer-events: none;
+}
+
+/* Quick Add Desktop Hover Positioning */
+@media screen and (min-width: 990px) {
+  .product-card-wrapper .card > .card__content {
+    position: relative;
+  }
+
+  .product-card-wrapper .card > .card__content > .quick-add,
+  .product-card-wrapper .card > .card__content > quick-add-bulk {
+    position: absolute;
+    grid-area: 1 / 1 / -1 / -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0 1.2rem 1.2rem;
+    z-index: 2;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(calc(-100% + 10px));
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.4s ease;
+  }
+
+  .product-card-wrapper:hover .card > .card__content > .quick-add,
+  .product-card-wrapper:hover .card > .card__content > quick-add-bulk {
+    visibility: visible;
+    pointer-events: none;
+    transform: translateY(-100%);
+  }
+
+  /* Fade the child button directly to preserve backdrop-filter */
+  .product-card-wrapper .card > .card__content > .quick-add .quick-add__submit,
+  .product-card-wrapper .card > .card__content > quick-add-bulk .quick-add__submit {
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .product-card-wrapper:hover .card > .card__content > .quick-add .quick-add__submit,
+  .product-card-wrapper:hover .card > .card__content > quick-add-bulk .quick-add__submit {
+    opacity: 1;
+  }
 }

@@ -1,8 +1,176 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 
-<div class="page-width">
-  <h1 class="title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+
+<style>
+  .collection-list-section {
+    padding-top: 4rem;
+    padding-bottom: 8rem;
+  }
+
+  .collection-list-title {
+    font-size: 3.2rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 5rem !important;
+    color: rgba(var(--color-foreground), 0.8);
+  }
+
+  /* Luxury Card Styles */
+  .collection-list__item .card {
+    border-radius: var(--image-radius, 32px) !important;
+    overflow: hidden !important;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1) !important;
+    border: 1px solid rgba(var(--color-foreground), 0.03) !important;
+    background: transparent !important;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.06) !important; /* Soft base shadow */
+  }
+
+  .collection-list__item .card:hover {
+    transform: translateY(-8px) !important; /* Stronger lift */
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.12) !important; /* Intense hover shadow */
+  }
+
+  .collection-list__item .card__inner {
+    border-radius: var(--image-radius, 32px) !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+
+
+  /* If it's a text-only card (like Home Page), ensure it has a background */
+  .collection-list__item .card--text .card__inner {
+    background-color: rgb(var(--color-background)) !important;
+  }
+
+  .collection-list__item .card__media {
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  }
+
+  .collection-list__item .card:hover .card__media {
+    transform: scale(1.08) !important;
+  }
+
+  /* Hide default title below image */
+  .collection-list__item .card__content--external {
+    display: none !important;
+  }
+
+  .collection-list__item .card__content--overlay,
+  .collection-list__item .card__content--overlay * {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .collection-list__item .card__content--overlay {
+    position: absolute !important;
+    bottom: 2.5rem !important;
+    left: 2.5rem !important;
+    right: 2.5rem !important;
+    padding: 0 !important;
+    justify-content: flex-start !important;
+    align-items: flex-end !important;
+    pointer-events: none !important;
+    z-index: 10 !important;
+  }
+
+  .collection-list__item .card__information {
+    padding: 0 !important;
+    width: auto !important;
+    pointer-events: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .collection-list__item .card__heading {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .collection-list__item .card__heading a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    background: rgba(var(--color-foreground), 0.1) !important;
+    backdrop-filter: blur(20px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+    padding: 1.2rem 3.2rem !important;
+    border-radius: 100px !important;
+    border: 1px solid rgba(var(--color-foreground), 0.1) !important;
+    color: rgb(var(--color-background)) !important;
+    font-size: 1.1rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.3em !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+    text-decoration: none !important;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
+    position: relative !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .collection-list__item .card__heading a::after {
+    content: '' !important;
+    position: absolute !important;
+    top: -10000px !important;
+    bottom: -10000px !important;
+    left: -10000px !important;
+    right: -10000px !important;
+    z-index: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .collection-list__item .card:hover .card__heading a {
+    background: rgb(var(--color-background)) !important;
+    color: rgb(var(--color-foreground)) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transform: translateY(-4px) !important;
+    border-color: rgb(var(--color-background)) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+    text-shadow: none !important;
+  }
+
+  .collection-list__item .card__heading .icon-wrap {
+    transition: transform 0.4s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+
+  .collection-list__item .card:hover .card__heading .icon-wrap {
+    transform: translateX(5px) !important;
+  }
+
+  .collection-list__item .card__caption {
+    display: none !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection-list-title {
+      font-size: 2.4rem;
+      margin-bottom: 3rem !important;
+    }
+    
+    .collection-list__item .card__content--overlay {
+      bottom: 1.5rem !important;
+      left: 1.5rem !important;
+      right: 1.5rem !important;
+    }
+
+    .collection-list__item .card__heading a {
+      padding: 0.8rem 1.6rem !important;
+      font-size: 1.1rem !important;
+    }
+  }
+</style>
+
+<div class="page-width collection-list-section" style="--image-radius: {{ section.settings.image_corner_radius }}px;">
+  <h1 class="collection-list-title inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     {{ section.settings.title }}
   </h1>
   {%- liquid
@@ -17,9 +185,9 @@
       assign collections = collections | reverse
     endif
 
-    assign moduloResult = 28 | modulo: section.settings.columns_desktop
+    assign modulo_result = 28 | modulo: section.settings.columns_desktop
     assign paginate_by = 30
-    if moduloResult == 0
+    if modulo_result == 0
       assign paginate_by = 28
     endif
   -%}
@@ -28,12 +196,54 @@
       class="collection-list grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
       role="list"
     >
+      {%- assign animation_order = 0 -%}
+      {%- if paginate.current_page == 1 -%}
+        {%- assign recommendations_collection = collections['recommendations'] -%}
+        {%- if recommendations_collection -%}
+          <li
+            class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ animation_order }};"
+            {% endif %}
+          >
+            {% render 'card-collection',
+              card_collection: recommendations_collection,
+              media_aspect_ratio: section.settings.image_ratio,
+              columns: 3
+            %}
+          </li>
+          {%- assign animation_order = animation_order | plus: 1 -%}
+        {%- endif -%}
+
+        {%- assign all_collection = collections['all'] -%}
+        {%- if all_collection -%}
+          <li
+            class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ animation_order }};"
+            {% endif %}
+          >
+            {% render 'card-collection',
+              card_collection: all_collection,
+              media_aspect_ratio: section.settings.image_ratio,
+              columns: 3
+            %}
+          </li>
+          {%- assign animation_order = animation_order | plus: 1 -%}
+        {%- endif -%}
+      {%- endif -%}
+
       {%- for collection in collections -%}
+        {%- if collection.handle == 'recommendations' or collection.handle == 'all' -%}
+          {%- continue -%}
+        {%- endif -%}
         <li
           class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
-            style="--animation-order: {{ forloop.index }};"
+            style="--animation-order: {{ animation_order }};"
           {% endif %}
         >
           {% render 'card-collection',
@@ -42,6 +252,7 @@
             columns: 3
           %}
         </li>
+        {%- assign animation_order = animation_order | plus: 1 -%}
       {%- endfor -%}
     </ul>
     {% render 'pagination', paginate: paginate %}
@@ -105,10 +316,24 @@
         {
           "value": "square",
           "label": "t:sections.main-list-collections.settings.image_ratio.options__3.label"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape (3:2)"
         }
       ],
       "default": "adapt",
       "label": "t:sections.main-list-collections.settings.image_ratio.label"
+    },
+    {
+      "type": "range",
+      "id": "image_corner_radius",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Image corner radius",
+      "default": 32
     },
     {
       "type": "range",

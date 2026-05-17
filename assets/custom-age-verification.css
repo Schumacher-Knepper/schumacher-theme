@@ -1,0 +1,141 @@
+.age-verification-open,
+.age-verification-open body {
+  overflow: hidden !important;
+}
+
+.age-verification-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in, visibility 0.3s; /* Snappier closing */
+  pointer-events: none;
+}
+
+.age-verification-modal.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s;
+}
+
+.age-verification-modal__overlay {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+  transition: backdrop-filter 0.3s ease-in, -webkit-backdrop-filter 0.3s ease-in;
+  will-change: backdrop-filter;
+  transform: translateZ(0);
+  z-index: -1;
+  touch-action: none;
+}
+
+.age-verification-modal.is-active .age-verification-modal__overlay {
+  transition: backdrop-filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), -webkit-backdrop-filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.age-verification-modal__content {
+  position: relative;
+  background: rgba(var(--color-background), 0.6);
+  backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+  border: 1px solid rgba(var(--color-foreground), 0.15);
+  border-radius: 30px; /* Rounded corners for modal */
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  transform: translateZ(0);
+  padding: 4rem;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media screen and (max-width: 749px) {
+  .age-verification-modal__content {
+    padding: 3rem 2rem;
+  }
+}
+
+.age-verification-modal__logo img {
+  max-width: 120px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.age-verification-modal__title {
+  margin: 0;
+  font-family: var(--font-heading-family);
+  font-size: calc(var(--font-heading-scale) * 3rem);
+  color: rgb(var(--color-foreground));
+}
+
+.age-verification-modal__description {
+  color: rgba(var(--color-foreground), 0.75);
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.age-verification-modal__description p {
+  margin: 0;
+}
+
+.age-verification-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.age-verification-modal__actions {
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+}
+
+.age-verification-modal__actions .button {
+  flex: 1;
+  padding: 1.2rem 2rem;
+  min-width: 0;
+  border-radius: 50px; /* Pill shape for buttons */
+}
+
+@media screen and (max-width: 480px) {
+  .age-verification-modal__actions {
+    flex-direction: column;
+  }
+}
+
+.age-verification-modal__error {
+  color: #d20000;
+  font-size: 1.4rem;
+  margin-top: -1rem;
+}
+
+.age-verification-modal__error.hidden {
+  display: none;
+}
+
+.age-verification-modal__footer {
+  font-size: 1.2rem;
+  color: rgba(var(--color-foreground), 0.6);
+  margin-top: 1rem;
+}
+
+.age-verification-modal__footer p {
+  margin: 0;
+}

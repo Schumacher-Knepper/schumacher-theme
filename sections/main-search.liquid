@@ -19,9 +19,49 @@
     margin-bottom: 3rem;
   }
 
+  .template-search__search .field__label {
+    display: block;
+  }
+
+  .template-search__search .field__button {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: 100% !important;
+    width: 5rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .template-search__search .search__button {
+    right: 1.5rem !important;
+  }
+
+  .template-search__search .reset__button {
+    right: 6.5rem !important;
+  }
+
   .template-search__search {
     margin: 0 auto 3.5rem;
     max-width: 74.1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .predictive-search--search-template {
+    z-index: 11 !important;
+    border-radius: 24px !important;
+    overflow: hidden;
+    margin-top: 1rem;
+    background: rgba(var(--color-background), 0.85) !important;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(var(--color-foreground), 0.08) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+    width: 100% !important;
+    left: 0 !important;
   }
 
   .template-search__search .search {
@@ -79,7 +119,7 @@
         {%- endif -%}
         <main-search>
           <form action="{{ routes.search_url }}" method="get" role="search" class="search">
-            <div class="field">
+            <div class="field field--glass">
               <input
                 class="search__input field__input"
                 id="Search-In-Template"
@@ -271,7 +311,7 @@
                   >
                     {%- case item.object_type -%}
                       {%- when 'product' -%}
-                        {%- capture product_settings -%}{%- if section.settings.product_show_vendor -%}vendor,{%- endif -%}title,price{%- endcapture -%}
+
                         {% render 'card-product',
                           card_product: item,
                           media_aspect_ratio: section.settings.image_ratio,

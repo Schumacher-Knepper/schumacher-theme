@@ -101,7 +101,30 @@ slideshow-component .slideshow.banner {
 }
 
 .slideshow__controls {
-  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  background: rgba(var(--color-background), 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 0.1rem solid rgba(var(--color-foreground), 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  border-radius: 10rem;
+  width: max-content;
+  padding: 0.4rem 0.8rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.slideshow__controls:hover {
+  background: rgba(var(--color-background), 0.9);
+  border-color: rgba(var(--color-foreground), 0.2);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
 }
 
 .slideshow__controls--top {
@@ -110,9 +133,12 @@ slideshow-component .slideshow.banner {
 }
 
 @media screen and (max-width: 749px) {
-  .slideshow__controls--border-radius-mobile {
-    border-bottom-right-radius: var(--text-boxes-radius);
-    border-bottom-left-radius: var(--text-boxes-radius);
+  .slideshow__controls {
+    bottom: 1.5rem;
+    padding: 0.4rem 0.8rem;
+    transform: translateX(-50%) scale(1);
+    width: max-content;
+    gap: 0.2rem;
   }
 }
 
@@ -120,25 +146,17 @@ slideshow-component .slideshow.banner {
   border-bottom: none;
 }
 
-@media screen and (min-width: 750px) {
-  .slideshow__controls {
-    position: relative;
-  }
-}
-
 slideshow-component:not(.page-width) .slider-buttons {
-  border-right: 0;
-  border-left: 0;
+  border: none;
 }
 
 .slideshow__control-wrapper {
   display: flex;
+  gap: 0.2rem;
 }
 
 .slideshow__autoplay {
-  position: absolute;
-  right: 0;
-  border-left: none;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -146,16 +164,26 @@ slideshow-component:not(.page-width) .slider-buttons {
 
 @media screen and (max-width: 749px) {
   slideshow-component.page-width .slideshow__autoplay {
-    right: 1.5rem;
+    position: relative;
+    right: auto;
   }
 }
 
 @media screen and (min-width: 750px) {
   .slideshow__autoplay.slider-button {
-    position: inherit;
-    margin-left: 0.6rem;
-    padding: 0 0 0 0.6rem;
-    border-left: 0.1rem solid rgba(var(--color-foreground), 0.08);
+    position: relative;
+    border: none;
+    margin-left: 0.8rem;
+  }
+
+  .slideshow__autoplay.slider-button::before {
+    content: '';
+    position: absolute;
+    left: -0.6rem;
+    top: 25%;
+    height: 50%;
+    width: 0.1rem;
+    background: rgba(var(--color-foreground), 0.1);
   }
 }
 
@@ -163,8 +191,10 @@ slideshow-component:not(.page-width) .slider-buttons {
 .slideshow__autoplay .icon.icon-pause {
   display: block;
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
   opacity: 1;
-  transform: scale(1);
   transition: transform 150ms ease, opacity 150ms ease;
   width: 0.8rem;
   height: 1.2rem;
@@ -189,13 +219,46 @@ slideshow-component:not(.page-width) .slider-buttons {
   }
 }
 
-.slideshow__autoplay:hover .svg-wrapper {
-  transform: scale(1.1);
+.slideshow__autoplay:hover .icon {
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
 .slideshow__autoplay--paused .icon-pause,
 .slideshow__autoplay:not(.slideshow__autoplay--paused) .icon-play {
   visibility: hidden;
   opacity: 0;
-  transform: scale(0.8);
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+/* Countdown Text */
+.banner__text--countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 4rem;
+  line-height: 1.1;
+  letter-spacing: 0.1rem;
+}
+
+.banner__text--countdown .countdown-prefix {
+  font-size: 0.5em; /* relative to 4rem, so 2rem */
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.banner__text--countdown .countdown-year {
+  font-size: 7rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+@media screen and (max-width: 749px) {
+  .banner__text--countdown {
+    font-size: 2.5rem;
+  }
+  .banner__text--countdown .countdown-year {
+    font-size: 5rem;
+  }
 }

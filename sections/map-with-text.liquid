@@ -1,0 +1,464 @@
+{{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .section-{{ section.id }}-padding .image-with-text {
+    max-width: {{ section.settings.content_max_width }}px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-{{ section.id }}-padding .image-with-text__content {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding .image-with-text__content {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+  }
+
+  .map-with-text__map-wrapper--{{ section.id }} {
+    position: relative;
+    border-radius: {{ section.settings.map_radius }}px !important;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(var(--color-foreground), 0.1);
+    background: rgb(var(--color-background));
+    overflow: visible !important; /* Allow shadow to spread */
+  }
+
+  .map-with-text__map-container {
+    width: 100%;
+    min-height: {{ section.settings.map_height_mobile }}px;
+    position: relative;
+    border-radius: {{ section.settings.map_radius }}px !important;
+    overflow: hidden !important;
+    -webkit-mask-image: -webkit-radial-gradient(white, black); /* Fix for Safari rounding */
+  }
+
+  .map-with-text__map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .map-with-text__map-container {
+      min-height: {{ section.settings.map_height_desktop }}px;
+    }
+    .map-with-text__map-wrapper--{{ section.id }} {
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .contact-info-block {
+    margin-top: 2.5rem;
+  }
+
+  .contact-info-block:first-child {
+    margin-top: 0;
+  }
+
+  .contact-info-block__title {
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+  }
+  
+  .contact-info-block__text p {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
+  <div class="page-width">
+    <div class="image-with-text isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == section.settings.section_color_scheme and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %}">
+      <div class="image-with-text__grid grid grid--1-col">
+        <div class="image-with-text__text-item grid__item">
+          <div class="image-with-text__content image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} content-container{% unless section.settings.color_scheme == section.settings.section_color_scheme %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}">
+            {%- for block in section.blocks -%}
+              {% case block.type %}
+                {%- when 'heading' -%}
+                  <h2 class="image-with-text__heading inline-richtext {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                    {{ block.settings.heading }}
+                  </h2>
+                {%- when 'text' -%}
+                  <div class="image-with-text__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+                    {{ block.settings.text }}
+                  </div>
+                {%- when 'contact_info' -%}
+                  <div class="contact-info-block" {{ block.shopify_attributes }}>
+                    {%- if block.settings.title != blank -%}
+                      <h3 class="contact-info-block__title h5">{{ block.settings.title }}</h3>
+                    {%- endif -%}
+                    {%- if block.settings.info != blank -%}
+                      <div class="contact-info-block__text rte">
+                        {{ block.settings.info }}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- when 'button' -%}
+                  {%- if block.settings.button_label != blank -%}
+                    <a {% if block.settings.button_link == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.button_link }}" {% endif %} class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}" {{ block.shopify_attributes }}>
+                      {{ block.settings.button_label | escape }}
+                    </a>
+                  {%- endif -%}
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <div class="map-with-text__media-item grid__item">
+          <div class="map-with-text__map-wrapper map-with-text__map-wrapper--{{ section.id }}">
+            <div class="map-with-text__map-container">
+              {%- if section.settings.map_src != blank -%}
+                <iframe 
+                  src="{{ section.settings.map_src }}" 
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+              {%- else -%}
+                <div class="placeholder" style="height: 100%; width: 100%; min-height: {{ section.settings.map_height_desktop }}px; display: flex; align-items: center; justify-content: center; background: rgba(var(--color-foreground), 0.04);">
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Map with text",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "map_src",
+      "label": "Map iframe src URL",
+      "info": "Paste the src URL from your Google Maps embed code.",
+      "default": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4446.615100501243!2d6.350645077725926!3d49.502499971426744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4795155944acdcb7%3A0xc23fde4d449060d4!2sDomaine%20viticole%20Schumacher-Knepper!5e1!3m2!1sen!2sde!4v1778780343098!5m2!1sen!2sde"
+    },
+    {
+      "type": "range",
+      "id": "map_height_desktop",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop Map Height",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "map_height_mobile",
+      "min": 200,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Map Height",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Content max width",
+      "default": 1000
+    },
+    {
+      "type": "range",
+      "id": "map_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Map border radius",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Content layout"
+    }, 
+    {
+      "type": "select",
+      "id": "content_layout",
+      "options": [
+        {
+          "value": "no-overlap",
+          "label": "No overlap"
+        },
+        {
+          "value": "overlap",
+          "label": "Overlap"
+        }
+      ],
+      "default": "no-overlap",
+      "label": "Content layout"
+    },       
+    {
+      "type": "select",
+      "id": "desktop_content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Desktop content alignment"
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Mobile content alignment"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },        
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "Section Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Content Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Visit Us at the Estate",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            }
+          ],
+          "default": "h1",
+          "label": "Heading size"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>We invite you to discover our wines at the source.</p>",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "Body"
+            },
+            {
+              "value": "subtitle",
+              "label": "Subtitle"
+            }
+          ],
+          "default": "body",
+          "label": "Text style"
+        }
+      ]
+    },
+    {
+      "type": "contact_info",
+      "name": "Contact Info",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Address"
+        },
+        {
+          "type": "richtext",
+          "id": "info",
+          "label": "Information",
+          "default": "<p>Your address here</p>"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Get directions",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary",
+          "default": false,
+          "label": "Use outline button style"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Map with text",
+      "blocks": [
+        {
+          "type": "heading",
+          "settings": {
+            "heading": "Visit Us at the Estate"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p>We invite you to discover our wines at the source. For the most extensive selection of our portfolio and exclusive limited releases, a visit to the estate is highly recommended.</p>"
+          }
+        },
+        {
+          "type": "contact_info",
+          "settings": {
+            "title": "Address",
+            "info": "<p>28, Wäistrooss (Route du Vin)<br>L-5495 Wintrange, Schengen, Luxembourg</p>"
+          }
+        },
+        {
+          "type": "contact_info",
+          "settings": {
+            "title": "Tasting Room Hours",
+            "info": "<p>Monday - Friday: 09:00 - 12:00 and 14:00 - 17:30<br>Saturday: 09:00 - 12:30<br>Sunday: Closed</p>"
+          }
+        },
+        {
+          "type": "contact_info",
+          "settings": {
+            "title": "Languages Spoken",
+            "info": "<p>Lëtzebuergesch, Français, Deutsch, English.</p>"
+          }
+        },
+        {
+          "type": "contact_info",
+          "settings": {
+            "title": "Group Tastings & Cellar Tours",
+            "info": "<p>We gladly welcome larger parties, wine clubs, and corporate retreats. We can comfortably accommodate group wine tastings for up to 35 people in our modern tasting facility. Cellar tours led by the winemaker and private group tastings are available strictly by request. Please contact our hospitality team directly at contact@schumacher-knepper.lu to arrange your bespoke Moselle experience.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

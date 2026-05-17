@@ -56,61 +56,6 @@
           "type": "description",
           "settings": {}
         },
-        "grid_title": {
-          "type": "grid_title",
-          "settings": {
-            "title": "Details"
-          }
-        },
-        "grid_row_collections": {
-          "type": "grid_row",
-          "settings": {
-            "key": "Collections",
-            "value": "<p>{{ product.metafields.custom.collections | metafield_text: field: 'collection' }}</p>"
-          }
-        },
-        "grid_row_year": {
-          "type": "grid_row",
-          "settings": {
-            "key": "Year",
-            "value": "<p>{{ product.metafields.custom.year.value }}</p>"
-          }
-        },
-        "grid_row_volume": {
-          "type": "grid_row",
-          "settings": {
-            "key": "Volume",
-            "value": "<p>{{ product.metafields.custom.volume.value.volume.value }}</p>"
-          }
-        },
-        "grid_row_hill": {
-          "type": "grid_row",
-          "settings": {
-            "key": "Hill",
-            "value": "<p>{{ product.metafields.custom.hill.value.hill.value }}</p>"
-          }
-        },
-        "grid_row_variety": {
-          "type": "grid_row",
-          "settings": {
-            "key": "Variety",
-            "value": "<p>{{ product.metafields.custom.variety.value.variety.value }}</p>"
-          }
-        },
-        "grid_row_mention": {
-          "type": "grid_row",
-          "settings": {
-            "key": "Mention",
-            "value": "<p>{{ product.metafields.custom.mention.value.mention.value }}</p>"
-          }
-        },
-        "grid_row_FyRYyN": {
-          "type": "grid_row",
-          "settings": {
-            "key": "Country",
-            "value": "<p>{{ product.metafields.shopify.country | metafield_text: field: 'label' }}</p>"
-          }
-        },
         "share": {
           "type": "share",
           "settings": {
@@ -127,14 +72,6 @@
         "quantity_selector",
         "buy_buttons",
         "description",
-        "grid_title",
-        "grid_row_collections",
-        "grid_row_year",
-        "grid_row_volume",
-        "grid_row_hill",
-        "grid_row_variety",
-        "grid_row_mention",
-        "grid_row_FyRYyN",
         "share"
       ],
       "settings": {

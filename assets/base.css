@@ -1,3 +1,4 @@
+
 :root {
   --alpha-button-background: 1;
   --alpha-button-border: 1;
@@ -6,6 +7,16 @@
   --focused-base-outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
   --focused-base-outline-offset: 0.3rem;
   --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
+}
+
+/* Hide scrollbar */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .product-card-wrapper .card,
@@ -1196,7 +1207,7 @@ button.shopify-payment-button__button--unbranded {
   --shadow-visible: var(--buttons-shadow-visible);
   --border-offset: var(--buttons-border-offset); /* reduce radius edge artifacts */
   --border-opacity: calc(1 - var(--buttons-border-opacity));
-  border-radius: var(--buttons-radius-outset);
+  border-radius: var(--buttons-radius);
   position: relative;
 }
 
@@ -1206,6 +1217,7 @@ button.shopify-payment-button__button--unbranded {
 button.shopify-payment-button__button--unbranded {
   min-width: calc(12rem + var(--buttons-border-width) * 2);
   min-height: calc(4.5rem + var(--buttons-border-width) * 2);
+  border-radius: var(--buttons-radius);
 }
 
 .button,
@@ -1238,7 +1250,7 @@ button.shopify-payment-button__button--unbranded {
   bottom: 0;
   left: 0;
   z-index: -1;
-  border-radius: var(--buttons-radius-outset);
+  border-radius: var(--buttons-radius);
   box-shadow: var(--shadow-horizontal-offset) var(--shadow-vertical-offset) var(--shadow-blur-radius)
     rgba(var(--color-shadow), var(--shadow-opacity));
 }
@@ -1273,6 +1285,19 @@ button.shopify-payment-button__button--unbranded {
 
 .button--secondary:after {
   --border-opacity: var(--buttons-border-opacity);
+}
+
+/* Liquid Glassy Outline Buttons */
+.button--secondary {
+  background: rgba(var(--color-button-text), 0.05) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.button--secondary:hover {
+  background: rgba(var(--color-button-text), 0.12) !important;
+  transform: translateY(-2px);
 }
 
 .button:focus-visible,
@@ -1875,31 +1900,21 @@ input[type='checkbox'] {
 
 /* component-quantity */
 .quantity {
-  color: rgba(var(--color-foreground));
+  color: rgb(var(--color-foreground));
   position: relative;
   width: calc(14rem / var(--font-body-scale) + var(--inputs-border-width) * 2);
   display: flex;
-  border-radius: var(--inputs-radius);
+  border-radius: 100px;
+  background: rgba(var(--color-foreground), 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(var(--color-foreground), 0.1);
   min-height: calc((var(--inputs-border-width) * 2) + 4.5rem);
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .quantity:after {
-  pointer-events: none;
-  content: '';
-  position: absolute;
-  top: var(--inputs-border-width);
-  right: var(--inputs-border-width);
-  bottom: var(--inputs-border-width);
-  left: var(--inputs-border-width);
-  border: 0.1rem solid transparent;
-  border-radius: var(--inputs-radius);
-  box-shadow: 0 0 0 var(--inputs-border-width) rgba(var(--color-foreground), var(--inputs-border-opacity));
-  transition: box-shadow var(--duration-short) ease;
-  z-index: 1;
-}
-
-.quantity:before {
-  background: rgb(var(--color-background));
   pointer-events: none;
   content: '';
   position: absolute;
@@ -1907,10 +1922,15 @@ input[type='checkbox'] {
   right: 0;
   bottom: 0;
   left: 0;
-  border-radius: var(--inputs-radius-outset);
-  box-shadow: var(--inputs-shadow-horizontal-offset) var(--inputs-shadow-vertical-offset)
-    var(--inputs-shadow-blur-radius) rgba(var(--color-shadow), var(--inputs-shadow-opacity));
-  z-index: -1;
+  border: 1px solid transparent;
+  border-radius: 100px;
+  box-shadow: 0 0 0 1px rgba(var(--color-foreground), 0);
+  transition: box-shadow var(--duration-short) ease;
+  z-index: 1;
+}
+
+.quantity:before {
+  display: none;
 }
 
 .quantity__input {
@@ -1943,37 +1963,55 @@ input[type='checkbox'] {
   justify-content: center;
   color: rgb(var(--color-foreground));
   padding: 0;
+  transition: background-color 0.3s ease;
 }
 
-.quantity__button:first-child {
-  margin-left: calc(var(--inputs-border-width));
+.quantity__button:hover {
+  background-color: rgba(var(--color-foreground), 0.1);
 }
 
-.quantity__button:last-child {
-  margin-right: calc(var(--inputs-border-width));
+.quantity__button:hover .svg-wrapper {
+  transform: scale(1.3);
+}
+
+.quantity__button:active {
+  transform: scale(0.9);
+}
+
+.quantity__button[name='minus'] {
+  margin-left: 0;
+  border-right: 1px solid rgba(var(--color-foreground), 0.08);
+}
+
+.quantity__button[name='plus'] {
+  margin-right: 0;
+  border-left: 1px solid rgba(var(--color-foreground), 0.08);
 }
 
 .quantity__button .svg-wrapper {
   width: 1rem;
   pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.quantity:focus-within {
+  border-color: rgba(var(--color-foreground), 0.3);
+  box-shadow: 0 0 10px rgba(var(--color-foreground), 0.05);
 }
 
 .quantity__button:focus-visible,
-.quantity__input:focus-visible {
-  background-color: rgb(var(--color-background));
-  z-index: 2;
-}
-
+.quantity__input:focus-visible,
 .quantity__button:focus,
 .quantity__input:focus {
-  background-color: rgb(var(--color-background));
-  z-index: 2;
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
 }
 
 .quantity__button:not(:focus-visible):not(.focused),
 .quantity__input:not(:focus-visible):not(.focused) {
   box-shadow: inherit;
-  background-color: inherit;
+  background-color: transparent;
 }
 
 .quantity__input:-webkit-autofill,
@@ -1991,6 +2029,7 @@ input[type='checkbox'] {
 
 .quantity__input[type='number'] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .quantity__rules {
@@ -2569,6 +2608,7 @@ input[type='checkbox'] {
   top: 100%;
   left: 0;
   height: calc(var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%)));
+  height: calc(var(--viewport-height, 100dvh) - (var(--header-bottom-position, 100%)));
   width: 100%;
   display: block;
   position: absolute;
@@ -2655,6 +2695,7 @@ details[open] .modal-overlay::after {
   left: 0;
   right: 0;
   height: 100vh;
+  height: 100dvh;
 }
 
 .search-modal {
@@ -3243,6 +3284,7 @@ details-disclosure > details {
 .animate--fixed > svg:not(.zoom):not(.deferred-media__poster-button) {
   position: fixed;
   height: 100vh;
+  height: 100dvh;
 }
 
 /* Zoom in image on scroll */
@@ -3594,4 +3636,531 @@ details-disclosure > details {
   100% {
     transform: translateX(100%) scaleX(0);
   }
+}
+
+/* Glass Inputs */
+.field--glass {
+  background: rgba(var(--color-background), 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 100px;
+  border: 1px solid rgba(var(--color-foreground), 0.08);
+  box-shadow: 
+    0 10px 30px -10px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  padding: 0 1rem;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.field--glass:focus-within {
+  background: rgba(var(--color-background), 0.75);
+  box-shadow: 
+    0 20px 40px -12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.field--glass::before,
+.field--glass::after {
+  display: none !important;
+}
+
+.field--glass .field__input {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 100% !important;
+  font-size: 1.6rem;
+}
+
+.field.field--glass .field__label,
+.customer .field.field--glass .field__label {
+  left: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+
+.field.field--glass .field__input:focus ~ .field__label,
+.field.field--glass .field__input:not(:placeholder-shown) ~ .field__label,
+.field.field--glass .field__input:-webkit-autofill ~ .field__label,
+.customer .field.field--glass .field__input:focus ~ label,
+.customer .field.field--glass .field__input:not(:placeholder-shown) ~ label,
+.customer .field.field--glass .field__input:-webkit-autofill ~ label {
+  top: 1.2rem;
+  transform: translateY(0);
+  font-size: 1rem;
+}
+
+.field--glass .field__button {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  right: 1.5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Vertically center calendar icon in date inputs */
+.field--glass .field__input[type="date"]::-webkit-calendar-picker-indicator {
+  margin-top: -0.8rem;
+  cursor: pointer;
+}
+
+/* Textarea adjustment */
+.field--glass.field--textarea {
+  border-radius: 24px;
+  height: auto;
+  align-items: flex-start;
+  padding: 1.5rem 1rem;
+}
+
+.field--glass.field--textarea .field__input {
+  height: auto !important;
+  min-height: 15rem;
+  padding: 1.5rem 2rem !important;
+}
+
+.field.field--glass.field--textarea .field__label,
+.customer .field.field--glass.field--textarea .field__label {
+  top: 2.2rem;
+  transform: none;
+}
+
+.field.field--glass.field--textarea .field__input:focus ~ .field__label,
+.field.field--glass.field--textarea .field__input:not(:placeholder-shown) ~ .field__label,
+.customer .field.field--glass.field--textarea .field__input:focus ~ label,
+.customer .field.field--glass.field--textarea .field__input:not(:placeholder-shown) ~ label {
+  top: 1rem;
+}
+
+/* --- Shopify Privacy Banner (Liquid Glass Style) --- */
+#shopify-pc__banner {
+  bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px)) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: calc(100% - 4rem) !important;
+  max-width: 520px !important;
+  background: rgba(var(--color-background), 0.7) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border-radius: 32px !important;
+  padding: 2.5rem !important;
+  border: 1px solid rgba(var(--color-foreground), 0.1) !important;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15) !important;
+  z-index: 2147483647 !important; /* Maximum possible z-index to stay on top */
+}
+
+.shopify-pc__banner__wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#shopify-pc__banner__body-title {
+  font-family: var(--font-heading-family);
+  font-size: 1.8rem !important;
+  margin-bottom: 1.5rem !important;
+  color: rgb(var(--color-foreground)) !important;
+  font-weight: 600 !important;
+}
+
+.shopify-pc__banner__body p {
+  font-size: 1.4rem !important;
+  line-height: 1.6 !important;
+  color: rgba(var(--color-foreground), 0.8) !important;
+}
+
+.shopify-pc__banner__body a {
+  color: rgb(var(--color-foreground)) !important;
+  text-decoration: underline !important;
+}
+
+.shopify-pc__banner__btns {
+  display: flex !important;
+  gap: 1.5rem !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-wrap: nowrap !important;
+}
+
+/* Standardizing all buttons in the banner */
+#shopify-pc__banner button {
+  border-radius: 28px !important;
+  padding: 1.2rem 2.5rem !important;
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  border: 1px solid transparent !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  height: auto !important;
+  line-height: 1.2 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+}
+
+/* Accept Button (Primary) */
+#shopify-pc__banner__btn-accept {
+  background: rgb(var(--color-button)) !important;
+  color: rgb(var(--color-button-text)) !important;
+  order: 3 !important;
+  min-width: 140px !important;
+}
+
+#shopify-pc__banner__btn-accept:hover {
+  transform: scale(1.03) !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Decline Button */
+#shopify-pc__banner #shopify-pc__banner__btn-decline {
+  background: transparent !important;
+  border: 1.5px solid rgba(var(--color-foreground), 0.2) !important;
+  color: rgb(var(--color-foreground)) !important;
+  order: 2 !important;
+  min-width: 100px !important;
+}
+
+#shopify-pc__banner__btn-decline:hover {
+  background: rgba(var(--color-foreground), 0.05) !important;
+  border-color: rgba(var(--color-foreground), 0.4) !important;
+}
+
+/* Manage Preferences Link */
+#shopify-pc__banner__btn-manage-prefs {
+  background: transparent !important;
+  border: none !important;
+  color: rgb(var(--color-foreground)) !important;
+  padding: 0 !important;
+  min-width: auto !important;
+  height: auto !important;
+  order: 1 !important;
+  margin-right: auto !important; /* Push other buttons to the right */
+  justify-content: flex-start !important;
+}
+
+#shopify-pc__banner__btn-manage-prefs span {
+  font-size: 1.2rem !important;
+  text-decoration: underline !important;
+  opacity: 0.7;
+}
+
+#shopify-pc__banner__btn-manage-prefs:hover span {
+  opacity: 1;
+}
+
+/* Mobile adjustments */
+@media screen and (min-width: 750px) {
+  #shopify-pc__banner {
+    left: initial !important;
+    right: 2.5rem !important;
+    transform: none !important;
+    width: 520px !important;
+    max-width: 90vw !important;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .shopify-pc__banner__btns {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    flex-wrap: wrap !important;
+    gap: 0 !important;
+  }
+  
+  #shopify-pc__banner button {
+    width: 100% !important;
+    order: unset !important;
+    margin-right: 0 !important;
+  }
+
+  #shopify-pc__banner__btn-manage-prefs {
+    justify-content: center !important;
+  }
+}
+
+/* Preferences Dialog (Liquid Glass Styling) */
+#shopify-pc__prefs__dialog {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: calc(100% - 4rem) !important;
+  max-width: 600px !important;
+  max-height: 85vh !important;
+  max-height: 85dvh !important;
+  background: rgba(var(--color-background), 0.7) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border-radius: 32px !important;
+  padding: 0 !important;
+  border: 1px solid rgba(var(--color-foreground), 0.1) !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2) !important;
+  z-index: 2147483647 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  touch-action: auto !important;
+}
+
+#shopify-pc__prefs__dialog header {
+  padding: 3.5rem 3rem 2.5rem !important;
+  background: transparent !important;
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.05) !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+#shopify-pc__prefs__header-title {
+  font-family: var(--font-heading-family) !important;
+  font-size: 2.8rem !important;
+  margin: 0 0 2.5rem 0 !important;
+  color: rgb(var(--color-foreground)) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.03em !important;
+  width: 100% !important;
+}
+
+#shopify-pc__prefs__header-close {
+  position: absolute !important;
+  top: 2rem !important;
+  right: 2rem !important;
+  background: rgba(var(--color-foreground), 0.05) !important;
+  border: none !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  padding: 0 !important;
+  z-index: 10 !important;
+}
+
+#shopify-pc__prefs__header-close:hover {
+  background: rgba(var(--color-foreground), 0.1) !important;
+  transform: rotate(90deg) !important;
+}
+
+#shopify-pc__prefs__header-close svg path {
+  fill: rgb(var(--color-foreground)) !important;
+}
+
+.shopify-pc__prefs__header-actions {
+  display: flex !important;
+  gap: 1.2rem !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+.shopify-pc__prefs__header-actions button {
+  border-radius: 28px !important;
+  padding: 1.2rem 2.5rem !important;
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  border: 1px solid transparent !important;
+  height: auto !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+#shopify-pc__prefs__header-accept {
+  background: rgb(var(--color-button)) !important;
+  color: rgb(var(--color-button-text)) !important;
+}
+
+#shopify-pc__prefs__header-decline {
+  background: transparent !important;
+  border: 1px solid rgba(var(--color-foreground), 0.1) !important;
+  color: rgb(var(--color-foreground)) !important;
+}
+
+#shopify-pc__prefs__header-save {
+  background: rgba(var(--color-foreground), 0.05) !important;
+  color: rgb(var(--color-foreground)) !important;
+}
+
+.shopify-pc__prefs__header-actions button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.shopify-pc__prefs__scrollable {
+  padding: 2rem 3rem 3rem !important;
+  overflow-y: auto !important;
+  flex-grow: 1 !important;
+  touch-action: pan-y !important;
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.shopify-pc__prefs__intro h3 {
+  font-family: var(--font-heading-family) !important;
+  font-size: 1.8rem !important;
+  margin-bottom: 1rem !important;
+  color: rgb(var(--color-foreground)) !important;
+}
+
+.shopify-pc__prefs__intro p {
+  font-size: 1.4rem !important;
+  color: rgba(var(--color-foreground), 0.7) !important;
+  margin-bottom: 3rem !important;
+}
+
+.shopify-pc__prefs__option {
+  background: rgba(var(--color-foreground), 0.03) !important;
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  margin-bottom: 1.5rem !important;
+  border: 1px solid rgba(var(--color-foreground), 0.05) !important;
+  transition: all 0.2s ease !important;
+}
+
+.shopify-pc__prefs__option:hover {
+  background: rgba(var(--color-foreground), 0.05) !important;
+}
+
+.shopify-pc__prefs__option label {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-weight: 600 !important;
+  font-size: 1.5rem !important;
+  cursor: pointer !important;
+  margin-bottom: 1rem !important;
+  color: rgb(var(--color-foreground)) !important;
+}
+
+.shopify-pc__prefs__option p {
+  font-size: 1.3rem !important;
+  line-height: 1.5 !important;
+  color: rgba(var(--color-foreground), 0.6) !important;
+  margin: 0 !important;
+}
+
+/* Clean Custom Checkbox Styling */
+.shopify-pc__prefs__option input[type="checkbox"] {
+  position: absolute !important;
+  opacity: 0 !important;
+  cursor: pointer !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.shopify-pc__prefs__option span[aria-hidden="true"] {
+  display: inline-block !important;
+  width: 44px !important;
+  height: 24px !important;
+  background: rgba(var(--color-foreground), 0.1) !important;
+  border-radius: 12px !important;
+  position: relative !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  border: 1px solid rgba(var(--color-foreground), 0.1) !important;
+}
+
+.shopify-pc__prefs__option span[aria-hidden="true"]::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 2px !important;
+  left: 2px !important;
+  width: 18px !important;
+  height: 18px !important;
+  background: #fff !important;
+  border-radius: 50% !important;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Hide the Shopify SVGs */
+.shopify-pc__prefs__option span[aria-hidden="true"] svg {
+  display: none !important;
+}
+
+/* Checked State (Toggle) */
+.shopify-pc__prefs__option input[type="checkbox"]:checked + span[aria-hidden="true"] {
+  background: rgb(var(--color-button)) !important;
+  border-color: rgb(var(--color-button)) !important;
+}
+
+.shopify-pc__prefs__option input[type="checkbox"]:checked + span[aria-hidden="true"]::after {
+  left: 22px !important;
+}
+
+/* Disabled/Readonly State (Essential) */
+.shopify-pc__prefs__option input[aria-readonly="true"] + span[aria-hidden="true"] {
+  opacity: 0.6 !important;
+  cursor: default !important;
+}
+
+/* Hover effect */
+.shopify-pc__prefs__option:hover span[aria-hidden="true"] {
+  background: rgba(var(--color-foreground), 0.15) !important;
+}
+
+.shopify-pc__prefs__option:hover input[type="checkbox"]:checked + span[aria-hidden="true"] {
+  filter: brightness(1.1) !important;
+}
+
+/* Mobile Adjustments for Dialog */
+@media screen and (max-width: 749px) {
+  #shopify-pc__prefs__dialog {
+    width: calc(100% - 2rem) !important;
+    max-height: 92vh !important;
+    max-height: 92dvh !important;
+    border-radius: 24px !important;
+  }
+
+  #shopify-pc__prefs__dialog header {
+    padding: 3rem 2rem 2rem !important;
+  }
+
+  #shopify-pc__prefs__header-title {
+    font-size: 2.2rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .shopify-pc__prefs__header-actions {
+    flex-direction: column !important;
+    gap: 1rem !important; /* Natural gap instead of zero */
+  }
+
+  .shopify-pc__prefs__header-actions button {
+    width: 100% !important;
+    margin: 0 !important;
+    border-radius: 28px !important; /* Restore pill shape */
+    padding: 1.2rem 2.5rem !important;
+  }
+
+  .shopify-pc__prefs__scrollable {
+    padding: 1.5rem 2rem 2.5rem !important;
+  }
+}
+
+/* Privacy Center Overlay */
+.shopify-pc__prefs__overlay,
+.shopify-pc__overlay {
+  background: rgba(0, 0, 0, 0.4) !important;
+  z-index: 2147483646 !important;
+  touch-action: none !important;
 }

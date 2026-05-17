@@ -1,0 +1,92 @@
+{%- liquid
+  assign t = template | split: '.' | first
+-%}
+
+<style>
+  .breadcrumbs {
+    margin: 0 0 2rem;
+    font-size: 1.4rem;
+  }
+  .breadcrumbs__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .breadcrumbs__item {
+    display: inline-block;
+  }
+  .breadcrumbs__link {
+    text-decoration: none;
+    color: inherit;
+    transition: text-decoration 0.2s ease;
+  }
+  .breadcrumbs__link:hover {
+    text-decoration: underline;
+  }
+  .breadcrumbs__separator {
+    color: rgba(var(--color-foreground), 0.5);
+  }
+</style>
+
+{%- if t == 'product' or t == 'collection' -%}
+  {%- if t == 'collection' and collection.handle == 'all' -%}
+    {%- assign show_breadcrumbs = false -%}
+  {%- else -%}
+    {%- assign show_breadcrumbs = true -%}
+  {%- endif -%}
+
+  {%- if show_breadcrumbs -%}
+    <nav class="breadcrumbs" role="navigation" aria-label="breadcrumbs">
+      <ul class="breadcrumbs__list">
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link" href="{{ collections['all'].url | default: '/collections/all' }}">{{ collections['all'].title | default: 'All wines' }}</a>
+        </li>
+
+        {%- if t == 'product' -%}
+          {%- if product.metafields.custom.primary_collection != blank -%}
+            {%- liquid
+              if product.metafields.custom.primary_collection.type == 'collection_reference'
+                assign primary_collection_handle = product.metafields.custom.primary_collection.value.handle
+                assign primary_collection_title = product.metafields.custom.primary_collection.value.title
+              elsif product.metafields.custom.primary_collection.type == 'metaobject_reference'
+                assign mo = product.metafields.custom.primary_collection.value
+                assign mo_name = mo.name.value | default: mo.name | default: mo.title.value | default: mo.title | default: mo.label.value | default: mo.label
+                assign primary_collection_title = mo_name | default: mo.system.handle | replace: '-', ' ' | capitalize
+                assign primary_collection_handle = mo.system.handle
+              else
+                assign primary_collection_handle = product.metafields.custom.primary_collection
+                assign primary_collection_title = product.metafields.custom.primary_collection | replace: '-', ' ' | capitalize
+              endif
+            -%}
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__separator" aria-hidden="true">&rsaquo;</span>
+            </li>
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="{{ routes.collections_url }}/{{ primary_collection_handle }}">
+                {{ primary_collection_title }}
+              </a>
+            </li>
+          {%- endif -%}
+
+          <li class="breadcrumbs__item">
+            <span class="breadcrumbs__separator" aria-hidden="true">&rsaquo;</span>
+          </li>
+          <li class="breadcrumbs__item">
+            <span aria-current="page" class="breadcrumbs__current">{{ product.title }}</span>
+          </li>
+        {%- elsif t == 'collection' -%}
+          <li class="breadcrumbs__item">
+            <span class="breadcrumbs__separator" aria-hidden="true">&rsaquo;</span>
+          </li>
+          <li class="breadcrumbs__item">
+            <span aria-current="page" class="breadcrumbs__current">{{ collection.title }}</span>
+          </li>
+        {%- endif -%}
+      </ul>
+    </nav>
+  {%- endif -%}
+{%- endif -%}

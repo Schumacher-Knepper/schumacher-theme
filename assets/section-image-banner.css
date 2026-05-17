@@ -49,6 +49,7 @@
 .banner__media.animate--zoom-in > svg:not(.zoom):not(.deferred-media__poster-button) {
   position: fixed;
   height: 100vh;
+  height: 100svh;
 }
 
 @media screen and (max-width: 749px) {
@@ -274,6 +275,12 @@
   align-items: center;
   justify-content: center;
   z-index: 2;
+}
+
+@media screen and (max-width: 749px) {
+  .banner__content {
+    padding-bottom: 5rem;
+  }
 }
 
 @media screen and (min-width: 750px) {

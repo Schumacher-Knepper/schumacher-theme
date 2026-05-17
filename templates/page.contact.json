@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -16,10 +25,70 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "map_with_text": {
+      "type": "map-with-text",
+      "blocks": {
+        "heading_1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Visit us at the Estate"
+          }
+        },
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We invite you to discover our wines at the source. For the most extensive selection of our portfolio and exclusive limited releases, a visit to the estate is highly recommended.<\/p>"
+          }
+        },
+        "contact_1": {
+          "type": "contact_info",
+          "settings": {
+            "title": "Address",
+            "info": "<p>28, Wäistrooss (Route du Vin)<br>L-5495 Wintrange, Schengen, Luxembourg<\/p>"
+          }
+        },
+        "contact_2": {
+          "type": "contact_info",
+          "settings": {
+            "title": "Tasting Room Hours",
+            "info": "<p>Monday - Friday: 09:00 - 12:00 and 14:00 - 17:30<br>Saturday: 09:00 - 12:30<br>Sunday: Closed<\/p>"
+          }
+        },
+        "contact_3": {
+          "type": "contact_info",
+          "settings": {
+            "title": "Languages Spoken",
+            "info": "<p>Lëtzebuergesch, Français, Deutsch, English.<\/p>"
+          }
+        },
+        "contact_4": {
+          "type": "contact_info",
+          "settings": {
+            "title": "Group Tastings & Cellar Tours",
+            "info": "<p>We gladly welcome larger parties, wine clubs, and corporate retreats. We can comfortably accommodate group wine tastings for up to 35 people in our modern tasting facility. Cellar tours led by the winemaker and private group tastings are available strictly by request. Please contact our hospitality team directly at contact@schumacher-knepper.lu to arrange your bespoke Moselle experience.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_1",
+        "text_1",
+        "contact_1",
+        "contact_2",
+        "contact_3",
+        "contact_4"
+      ],
+      "settings": {
+        "content_max_width": 800,
+        "desktop_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "main",
-    "form"
+    "form",
+    "map_with_text"
   ]
 }

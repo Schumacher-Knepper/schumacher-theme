@@ -80,6 +80,286 @@
   .section-header {
     position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
     margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
+    z-index: 10;
+  }
+
+  .header-wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: rgba(var(--color-background), 0.55) !important;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(var(--color-foreground), 0.08);
+    border-radius: 100px;
+    margin: 1.5rem auto;
+    width: calc(100% - 4rem);
+    max-width: var(--page-width);
+    box-shadow: 
+      0 10px 30px -10px rgba(0, 0, 0, 0.1),
+      inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .shopify-section-header-sticky .header-wrapper {
+    margin-top: 0.75rem;
+    background: rgba(var(--color-background), 0.75) !important;
+    box-shadow: 
+      0 20px 50px -12px rgba(0, 0, 0, 0.2),
+      inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    transform: translateY(4px);
+  }
+
+  .header-wrapper--border-bottom {
+    border-bottom: none !important;
+  }
+
+  .header__search .search-modal {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(var(--color-background), 0.85) !important;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 100px;
+    border: 1px solid rgba(var(--color-foreground), 0.08);
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    z-index: 2;
+  }
+
+  .search-modal__content {
+    width: 100%;
+    height: 100%;
+    background: transparent !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-modal__form {
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-modal__close-button {
+    display: none !important;
+  }
+
+  .search-modal__content .field {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    flex-grow: 1;
+    height: 100%;
+  }
+
+  .search-modal__content .field__input {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: inherit;
+    font-size: 1.6rem;
+    width: 100%;
+    height: 100%;
+    padding: 0 2rem !important; /* Centers text vertically */
+  }
+
+  .search-modal__content .field__input:focus,
+  .search-modal__content .field__input:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .search-modal__content .field__label {
+    display: none !important; 
+  }
+
+  .search-modal__content .search__button {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: 4.4rem; 
+    color: inherit;
+  }
+
+  .predictive-search {
+    background: rgba(var(--color-background), 0.85) !important;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 24px !important;
+    border: 1px solid rgba(var(--color-foreground), 0.08);
+    margin-top: 1.5rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+    width: 100%; 
+    left: 0; 
+  }
+
+  .search-modal__content .field::before,
+  .search-modal__content .field::after {
+    display: none !important;
+    content: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .header {
+    transition: padding 0.4s cubic-bezier(0.23, 1, 0.32, 1), min-height 0.4s cubic-bezier(0.23, 1, 0.32, 1), height 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  }
+
+  .header-wrapper:has(.header__search details[open]) {
+    max-width: 60rem !important; 
+    width: calc(100% - 4rem) !important; 
+    background: transparent !important;
+    border: none !important;
+    box-shadow: 0 0 0 100vmax rgba(var(--color-foreground), 0.5) !important;
+  }
+
+  .header-wrapper:has(.header__search details[open]) .header {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: 60px !important; 
+    height: 60px !important; 
+  }
+
+  .header-wrapper:has(details[open]) {
+    background: rgba(var(--color-background), 0.95) !important; 
+    box-shadow: 
+      0 0 0 100vmax rgba(var(--color-foreground), 0.5),
+      0 10px 30px -10px rgba(0, 0, 0, 0.1),
+      inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .search-modal__content .field__button,
+  .search-modal__content .reset__button {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    height: auto !important;
+    margin: 0 !important;
+  }
+
+  /* Hide header content when search is open so it doesn't show through the glass */
+  .header:has(.header__search details[open]) header-drawer,
+  .header:has(.header__search details[open]) .header__heading,
+  .header:has(.header__search details[open]) .header__heading-link,
+  .header:has(.header__search details[open]) .header__inline-menu,
+  .header:has(.header__search details[open]) .header__icons > *:not(.header__search) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Hide the toggle icon when search is open */
+  .header__search details[open] > summary {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  details[open] > .search-modal {
+    box-shadow: none !important;
+  }
+
+  /* Hide default visual overlays but keep summary::before as an invisible click target 
+     so clicking outside the menu still closes it. */
+  .header-wrapper details[open] summary::before {
+    display: block !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    cursor: default !important;
+    position: fixed;
+    z-index: 1;
+  }
+  
+  details[open] .modal-overlay::after {
+    display: none !important;
+  }
+  
+  header-drawer, .header__heading, .header__heading-link, .header__inline-menu, .header__icons > * {
+    transition: opacity 0.3s ease;
+  }
+
+  #MainContent {
+    padding-top: calc(var(--header-height, 100px));
+  }
+
+  #MainContent:has(> .shopify-section:first-child .banner) .banner__content,
+  #MainContent:has(> .shopify-section:first-child .slideshow) .banner__content,
+  #MainContent:has(> .shopify-section:first-child .collection-hero) .collection-hero__inner,
+  #MainContent:has(> .shopify-section:first-child .video-section) .video-section {
+    padding-top: calc(var(--header-height, 100px));
+  }
+  
+  #MainContent:has(> .shopify-section:first-child .banner),
+  #MainContent:has(> .shopify-section:first-child .slideshow),
+  #MainContent:has(> .shopify-section:first-child .video-section),
+  #MainContent:has(> .shopify-section:first-child .collection-hero) {
+    padding-top: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .header-wrapper {
+      margin: 1rem auto;
+      width: calc(100% - 2rem);
+      border-radius: 50px;
+    }
+    .search-modal {
+      border-radius: 50px;
+    }
+  }
+
+  /* Make the burger menu drawer a floating glass pill to match */
+  .menu-drawer {
+    top: calc(100% + 1rem) !important;
+    border-radius: 30px !important;
+    background: rgba(var(--color-background), 0.8) !important;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    height: calc(100vh - var(--header-bottom-position, 100%) - 12rem) !important;
+    height: calc(100dvh - var(--header-bottom-position, 100%) - 12rem) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .js .menu-drawer__submenu {
+    background: transparent !important;
+  }
+
+  .header-wrapper::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background: transparent;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .header-wrapper:has(details[open])::before {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  body:has(#Details-menu-drawer-container[open]) {
+    overflow: hidden;
   }
 
   @media screen and (min-width: 750px) {
@@ -327,7 +607,10 @@
     }
 
     setHeaderHeight() {
-      document.documentElement.style.setProperty('--header-height', `${this.header.offsetHeight}px`);
+      // Since header-wrapper is absolute, section-header height is 0. 
+      // We calculate based on the actual sticky-header element.
+      const height = this.offsetHeight + 40; // Add margin/padding buffer
+      document.documentElement.style.setProperty('--header-height', `${height}px`);
     }
 
     disconnectedCallback() {
@@ -341,7 +624,7 @@
         observer.disconnect();
       });
 
-      observer.observe(this.header);
+      observer.observe(this);
     }
 
     onScroll() {

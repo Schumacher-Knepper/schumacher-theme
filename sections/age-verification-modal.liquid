@@ -1,0 +1,114 @@
+{{ 'custom-age-verification.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-age-verification.js' | asset_url }}" defer="defer"></script>
+
+<div id="AgeVerificationModal" class="age-verification-modal" aria-hidden="true" data-min-age="{{ section.settings.min_age }}" data-error-message="{{ section.settings.error_message | escape }}">
+  <div class="age-verification-modal__overlay" tabindex="-1"></div>
+  <div class="age-verification-modal__content" role="dialog" aria-modal="true" aria-labelledby="AgeVerificationTitle">
+    
+    {%- if section.settings.logo != blank -%}
+      <div class="age-verification-modal__logo">
+        {{ section.settings.logo | image_url: width: 300 | image_tag: alt: section.settings.logo.alt, loading: 'lazy' }}
+      </div>
+    {%- endif -%}
+
+    <h2 id="AgeVerificationTitle" class="age-verification-modal__title h1">
+      {{ section.settings.heading | escape }}
+    </h2>
+
+    <div class="age-verification-modal__description">
+      {{ section.settings.description }}
+    </div>
+
+    <form id="AgeVerificationForm" class="age-verification-modal__form">
+      <div class="field field--glass">
+        <input
+          type="date"
+          id="AgeVerificationDate"
+          name="birth_date"
+          class="field__input"
+          placeholder=" "
+          required
+        >
+        <label for="AgeVerificationDate" class="field__label">{{ section.settings.date_of_birth_label | escape }}</label>
+      </div>
+
+      <div id="AgeVerificationError" class="age-verification-modal__error hidden">
+        {{ section.settings.error_message }}
+      </div>
+
+      <div class="age-verification-modal__actions">
+        <button type="submit" class="button button--primary age-verification-modal__submit">
+          {{ section.settings.agree_button_text | escape }}
+        </button>
+        <button type="button" id="AgeVerificationCancel" class="button button--secondary age-verification-modal__cancel">
+          {{ section.settings.disagree_button_text | escape }}
+        </button>
+      </div>
+    </form>
+
+    <div class="age-verification-modal__footer">
+      {{ section.settings.footer_text }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Age Verification Modal",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Age confirmation"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Please verify that you are 18 years of age or older to enter this site.</p>"
+    },
+    {
+      "type": "number",
+      "id": "min_age",
+      "label": "Minimum Age",
+      "default": 18
+    },
+    {
+      "type": "text",
+      "id": "date_of_birth_label",
+      "label": "Date of Birth Label",
+      "default": "Date of birth"
+    },
+    {
+      "type": "text",
+      "id": "error_message",
+      "label": "Error Message",
+      "default": "You must be of legal drinking age to purchase."
+    },
+    {
+      "type": "text",
+      "id": "agree_button_text",
+      "label": "Agree Button Text",
+      "default": "Confirm"
+    },
+    {
+      "type": "text",
+      "id": "disagree_button_text",
+      "label": "Disagree Button Text",
+      "default": "Cancel"
+    },
+    {
+      "type": "richtext",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "<p>By confirming this, you are agreeing to the Age Verification Policy. <br><em>Alcohol abuse is dangerous for your health. Please drink responsibly.</em></p>"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,167 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_banner_g6RhVq": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_dyin6i": {
+          "type": "heading",
+          "settings": {
+            "heading": "The slopes of the Moselle",
+            "heading_size": "h1"
+          }
+        },
+        "text_QBcLxe": {
+          "type": "text",
+          "settings": {
+            "text": "Our 17 hectares of vines are situated in some of the finest, most sought-after sites along Luxembourg's stretch of the Moselle river. In the picturesque village of Wintrange, home to roughly 400 residents, a long set of ancient stairs leads up the hillside to the statue of Saint Donatus, the patron saint of winemakers. From his elevated perch, his gaze sweeps across the Moselle Valley, across the nearby nature preserve of Haff Remich, and onto the distant Lorraine forests. It is said that Saint Donatus protects our delicate grapes from sudden storms and hail—and tasting the purity of our harvests, we firmly believe he is doing his job well.",
+            "text_style": "body"
+          }
+        },
+        "buttons_Uag3jn": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Visit the Estate",
+            "button_link_1": "shopify://pages/visit-the-estate",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_dyin6i",
+        "text_QBcLxe",
+        "buttons_Uag3jn"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/IMG_0098_Custom.jpg",
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "rich_text_3JBRei": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_UJCmTf": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Terroir",
+            "heading_size": "h1"
+          }
+        },
+        "text_qiK9wy": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our prized Felsberg site in Wintrange yields Rieslings of profound minerality, structure, and aging potential. Further along the river, our plots in the Kelterberg of Ehnen provide the ideal foundation for our elegant Auxerrois and Pinot Gris, bottled under our Linden-Heinisch label. It is here, where the river winds and the sun strikes the steep slopes, that the true, unmistakable character of Schumacher-Knepper is born.</p>"
+          }
+        },
+        "button_4tBKwU": {
+          "type": "button",
+          "settings": {
+            "button_label": "Discover Our Heritage",
+            "button_link": "shopify://pages/our-story",
+            "button_style_secondary": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_UJCmTf",
+        "text_qiK9wy",
+        "button_4tBKwU"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "image_with_text_68fVcP": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_mV78Vc": {
+          "type": "heading",
+          "settings": {
+            "heading": "Farming for the Eleventh Generation",
+            "heading_size": "h1"
+          }
+        },
+        "text_VPhfyD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>As farmers whose family has worked this exact soil for over three hundred years, environmental stewardship is not a modern marketing trend; it is a foundational necessity for our survival. Our viticultural practices are rigorously designed to preserve the delicate ecosystem of the Moselle Valley for the generations that will follow us. By minimizing synthetic intervention in the vineyard, promoting natural biodiversity among the vines, and carefully managing the health of our soils, we ensure that the land remains vibrant. This deep respect for the environment translates directly into the purity, intensity, and pristine quality of the wines we produce.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_dR7Q8c": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop Wines",
+            "button_link": "shopify://collections/all",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_mV78Vc",
+        "text_VPhfyD",
+        "button_dR7Q8c"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/L1040497.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-5",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_banner_g6RhVq",
+    "rich_text_3JBRei",
+    "image_with_text_68fVcP"
+  ]
+}

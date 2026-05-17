@@ -32,6 +32,17 @@ cart-items .title-wrapper-with-link {
   align-items: flex-start;
 }
 
+.cart-item__image-container.global-media-settings {
+  --media-radius: 12px;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.cart-item__image-container.global-media-settings img {
+  border-radius: var(--media-radius) !important;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.08));
+}
+
 .cart-item__nested-line .cart-item__image-container {
   min-width: calc(10rem / var(--font-body-scale));
   justify-content: right;

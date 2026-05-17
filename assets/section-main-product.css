@@ -380,9 +380,33 @@ a.product__text {
   text-align: center;
 }
 
-/* Product media */
-.product__media-list video {
-  border-radius: calc(var(--media-radius) - var(--media-border-width));
+/* Product media rounding */
+.product__media-wrapper,
+.product-media-modal {
+  --media-radius: 32px;
+}
+
+.product__media-list .global-media-settings,
+.product-media-modal .global-media-settings,
+.product-media-modal img.global-media-settings,
+.image-magnify-full-size {
+  --media-radius: 32px;
+  border-radius: var(--media-radius) !important;
+  overflow: hidden !important;
+}
+
+.product__media-list .global-media-settings img,
+.product-media-modal .global-media-settings img {
+  border-radius: calc(var(--media-radius) - var(--media-border-width)) !important;
+}
+
+.thumbnail-slider .global-media-settings {
+  --media-radius: 12px;
+}
+
+.product__media-list video,
+.product-media-modal video {
+  border-radius: calc(var(--media-radius) - var(--media-border-width)) !important;
 }
 
 @media screen and (max-width: 749px) {
@@ -625,10 +649,12 @@ a.product__text {
   display: flex;
   align-items: center;
   height: 100vh;
+  height: 100svh;
 }
 
 .product-media-modal__content {
   max-height: 100vh;
+  max-height: 100svh;
   width: 100%;
   overflow: auto;
 }
@@ -838,7 +864,6 @@ a.product__text {
   .product-media-modal__dialog .global-media-settings iframe,
   .product-media-modal__dialog .global-media-settings img {
     border: none;
-    border-radius: 0;
   }
 }
 
@@ -1302,6 +1327,7 @@ a.product__text {
   --viewport-offset: 400px;
   --constrained-min-height: 300px;
   --constrained-height: max(var(--constrained-min-height), calc(100vh - var(--viewport-offset)));
+  --constrained-height: max(var(--constrained-min-height), calc(100svh - var(--viewport-offset)));
   margin-right: auto;
   margin-left: auto;
 }
@@ -1412,6 +1438,16 @@ a.product__text {
   -webkit-appearance: none;
 }
 
+.recipient-form > input[type='checkbox']:checked + label > svg {
+  background: rgb(var(--color-foreground));
+  border-color: rgb(var(--color-foreground));
+  box-shadow: 0 4px 12px rgba(var(--color-foreground), 0.2);
+}
+
+.recipient-form > input[type='checkbox']:checked + label .svg-wrapper {
+  visibility: visible;
+}
+
 .recipient-fields__field {
   margin: 0 0 2rem 0;
 }
@@ -1424,23 +1460,46 @@ a.product__text {
 }
 
 .recipient-checkbox > svg {
+  background-color: rgba(var(--color-background), 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(var(--color-foreground), 0.15);
+  border-radius: 0.6rem;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
   margin-top: var(--recipient-checkbox-margin-top);
   margin-right: 1.2rem;
   flex-shrink: 0;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.recipient-checkbox > svg rect {
+  stroke: none !important;
+}
+
+.recipient-checkbox:hover > svg {
+  transform: translateY(-1px);
+  border-color: rgba(var(--color-foreground), 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.recipient-form .svg-wrapper {
+  visibility: hidden;
+  position: absolute;
+  left: 0.25rem;
+  z-index: 5;
+  top: calc(var(--recipient-checkbox-margin-top) + 0.45rem);
+  width: 1.1rem;
+  height: 0.7rem;
+  transition: all 0.2s ease;
 }
 
 .recipient-form .icon-checkmark {
-  visibility: hidden;
-  position: absolute;
-  left: 0.28rem;
-  z-index: 5;
-  top: 0.4rem;
-  width: 10px;
-  height: 9px;
-}
-
-.recipient-form > input[type='checkbox']:checked + label .icon-checkmark {
-  visibility: visible;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: rgb(var(--color-background));
 }
 
 .js .recipient-fields {

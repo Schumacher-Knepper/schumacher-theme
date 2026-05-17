@@ -17,6 +17,8 @@
   assign ratio = 1
   if card_collection.featured_image and media_aspect_ratio == 'portrait'
     assign ratio = 0.8
+  elsif card_collection.featured_image and media_aspect_ratio == 'landscape'
+    assign ratio = 1.5
   elsif card_collection.featured_image and media_aspect_ratio == 'adapt'
     assign ratio = card_collection.featured_image.aspect_ratio
   endif
@@ -81,7 +83,7 @@
           {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
         </div>
       {%- else -%}
-        <div class="card__content">
+        <div class="card__content card__content--overlay">
           <div class="card__information">
             <h3 class="card__heading">
               <a
@@ -97,19 +99,14 @@
                 {%- else -%}
                   {{ 'onboarding.collection_title' | t }}
                 {%- endif -%}
-                {%- if card_collection.description == blank -%}
-                  <span class="icon-wrap">
-                    {{- 'icon-arrow.svg' | inline_asset_content -}}
-                  </span>
-                {%- endif %}
+                <span class="icon-wrap">
+                  {{- 'icon-arrow.svg' | inline_asset_content -}}
+                </span>
               </a>
             </h3>
             {%- if card_collection.description != blank -%}
               <p class="card__caption">
                 {{- card_collection.description | strip_html | truncatewords: 12 -}}
-                <span class="icon-wrap">
-                  {{- 'icon-arrow.svg' | inline_asset_content -}}
-                </span>
               </p>
             {%- endif -%}
           </div>
@@ -117,7 +114,7 @@
       {%- endif -%}
     </div>
     {%- if card_collection != blank and card_style == 'card' or card_collection.featured_image -%}
-      <div class="card__content">
+      <div class="card__content card__content--external">
         <div class="card__information">
           <h3 class="card__heading">
             <a
@@ -133,21 +130,11 @@
               {%- else -%}
                 {{ 'onboarding.collection_title' | t }}
               {%- endif -%}
-              {%- if card_collection.featured_image or card_collection.description == blank -%}
-                <span class="icon-wrap">
-                  {{- 'icon-arrow.svg' | inline_asset_content -}}
-                </span>
-              {%- endif %}
-            </a>
-          </h3>
-          {%- if card_collection.featured_image == null and card_collection.description != blank -%}
-            <p class="card__caption">
-              {{- card_collection.description | strip_html | truncatewords: 12 -}}
               <span class="icon-wrap">
                 {{- 'icon-arrow.svg' | inline_asset_content -}}
               </span>
-            </p>
-          {%- endif -%}
+            </a>
+          </h3>
         </div>
       </div>
     {%- endif -%}
